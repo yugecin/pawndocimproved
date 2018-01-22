@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet href="original.xsl" type="text/xsl"?>
+<doc source="main.pwn">
+	<assembly>
+		<name>main.pwn</name>
+	</assembly>
+
+	<!-- general -->
+	<general>
+		General summary of this script  <section>  Section  </section>  <subsection>  Subsection  </subsection> 
+	</general>
+
+	<members>
+
+		<!-- enumerations -->
+		<member name="T:bluhenum" value="2">
+			<tagname value="bluhenum"/>
+			<member name="C:A" value="0">
+			</member>
+			<member name="C:B" value="1">
+			</member>
+		</member>
+
+		<!-- constants -->
+		<member name="C:numbervar" value="0">
+			<referrer name="func"/>
+		</member>
+
+		<!-- variables -->
+		<member name="F:__date">
+		</member>
+		<member name="F:__file">
+		</member>
+		<member name="F:__time">
+		</member>
+		<member name="F:bla">
+		</member>
+		<member name="F:stuff">
+			<referrer name="func"/>
+		</member>
+
+		<!-- functions -->
+		<member name="M:@shizzle" syntax="@shizzle(par0, par1[])">
+			<attribute name="public"/>
+			<stacksize value="4"/>
+			<dependency name="func"/>
+			<param name="par0">
+				<paraminfo>tagged </paraminfo>
+				some param
+			</param>
+			<param name="par1">
+				<paraminfo> [] </paraminfo>
+				some other param
+			</param>
+			<summary>this is shizzle func</summary>      <remarks>no comment</remarks>  <returns>absolutely nothing</returns> 
+		</member>
+		<member name="M:daysinmonth" syntax="daysinmonth(month, year)">
+			<stacksize value="4"/>
+			<referrer name="readdate"/>
+			<dependency name="isleapyear"/>
+			<param name="month">
+				The month number, a value between 1 and 12.  
+			</param>
+			<param name="year">
+				The year in 4 digits.  
+			</param>
+			<summary>  Returns the number of days in a month (the month is an integer  in the range 1 .. 12).  One needs to pass in the year as well,  because the function takes leap years into account.  </summary>     
+		</member>
+		<member name="M:func" syntax="func(p)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<automaton name="auto2"/>
+			<referrer name="@shizzle"/>
+			<dependency name="A"/>
+			<dependency name="numbervar"/>
+			<dependency name="printf"/>
+			<dependency name="stuff"/>
+			<param name="p">
+				aoo  
+			</param>
+			<transition target="two" source="one"/>
+<p/> <summary>  func  <p/>  it's func  <p/>  example using <paramref name="p" />  <code>  blah blah  secondline  </code>  </summary>    <returns>  somethingggg alsofd <c>code</c> <em>it</em> <strong>hj</strong>  </returns>  <remarks>  such remark  <p/>  wew  </remarks>  <seealso>somethingelse main</seealso> 
+		</member>
+		<member name="M:getvalue" syntax="getvalue(base, term, ...)">
+			<attribute name="native"/>
+			<referrer name="readdate"/>
+			<param name="base">
+			</param>
+			<param name="term">
+			</param>
+			<param name="...">
+			</param>
+		</member>
+		<member name="M:isleapyear" syntax="isleapyear(year)">
+			<tagname value="bool"/>
+			<stacksize value="1"/>
+			<referrer name="daysinmonth"/>
+			<param name="year">
+				The year in 4 digits.  
+			</param>
+			<summary>  Returns whether a year is a leap year.  </summary>    <remarks>  A year is a leap year:  <ul>  <li> if it is divisable by 4, </li>  <li> but <strong>not</strong> if it is divisable by 100, </li>  <li> but it <strong>is</strong> it is divisable by 400.  </li>  </ul>  </remarks> 
+		</member>
+		<member name="M:main" syntax="main()">
+			<attribute name="entry"/>
+			<stacksize value="10"/>
+			<dependency name="print"/>
+			<dependency name="printf"/>
+			<dependency name="readdate"/>
+			<dependency name="weekday"/>
+			<summary>  The main program: asks the user to input a date and prints on  what day of the week that date falls.  </summary>  <transition target="one"/>
+
+		</member>
+		<member name="M:print" syntax="print(string[], foreground, background, highlight)">
+			<attribute name="native"/>
+			<referrer name="main"/>
+			<referrer name="readdate"/>
+			<param name="string">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="foreground">
+			</param>
+			<param name="background">
+			</param>
+			<param name="highlight">
+			</param>
+		</member>
+		<member name="M:printf" syntax="printf(format[], ...)">
+			<attribute name="native"/>
+			<referrer name="func"/>
+			<referrer name="main"/>
+			<param name="format">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="...">
+				<paraminfo> {Float,Fixed,_} </paraminfo>
+			</param>
+		</member>
+		<member name="M:readdate" syntax="readdate(&amp;day, &amp;month, &amp;year)">
+			<tagname value="bool"/>
+			<stacksize value="6"/>
+			<referrer name="main"/>
+			<dependency name="daysinmonth"/>
+			<dependency name="getvalue"/>
+			<dependency name="print"/>
+			<param name="day">
+				<paraminfo> &amp; </paraminfo>
+				Will hold the day number upon return.  
+			</param>
+			<param name="month">
+				<paraminfo> &amp; </paraminfo>
+				Will hold the month number upon return.  
+			</param>
+			<param name="year">
+				<paraminfo> &amp; </paraminfo>
+				Will hold the year number upon return.  
+			</param>
+			<summary>  Reads a date and stores it in three separate fields.  tata  </summary>        <returns>  <em>true</em> if the date is valid, <em>false</em> otherwise;  if the function returns <em>false</em>, the values of  <paramref name="day"/>, <paramref name="month"/> and  <paramref name="year"/> cannot be relied upon.  </returns> 
+		</member>
+		<member name="M:weekday" syntax="weekday(day, month, year)">
+			<stacksize value="3"/>
+			<referrer name="main"/>
+			<param name="day">
+				The day in the month, a value between 1 and 31.  
+			</param>
+			<param name="month">
+				The month: a value between 1 and 12.  
+			</param>
+			<param name="year">
+				The year in four digits.  
+			</param>
+			<summary>  The core function of Zeller’s congruence algorithm.  The function  works for the Gregorian calender.  </summary>        <returns>  The day of the week, where 0 is Saturday and 6 is Friday.  </returns>  <returns>  The day fdfdfdfis Saturday and 6 is Friday.  </returns>  <remarks>  This function does not check the validity of the date; when the  date in the parameters is invalid, the returned "day of the week"  will hold an incorrect value.  <p/>  This equation fails in many programming languages, notably most  implementations of C, C++ and Pascal, because these languages have  a loosely defined "remainder" operator.  Pawn, on the other hand,  provides the true modulus operator, as defined in mathematical  theory and as was intended by Zeller.  </remarks>  <remarks>  For Zeller’s congruence algorithm, the months January and  February are the 13th and 14th month of the <em>preceding</em>  year.  The idea is that the "difficult month" February (which  has either 28 or 29 days) is moved to the end of the year.  </remarks> 
+		</member>
+
+	</members>
+</doc>

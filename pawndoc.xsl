@@ -178,7 +178,9 @@
 		<xsl:when test="substring(@name,1,2) = 'F:'">
 			<h2 class="variable"><xsl:attribute name="id"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><span>variable</span><a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a></h2>
 			<xsl:apply-templates select="summary"/>
-			<h3>Syntax</h3><p class="syntax"><xsl:value-of select="@syntax"/></p>
+			<xsl:if test="@syntax">
+				<h3>Syntax</h3><p class="syntax"><xsl:value-of select="@syntax"/></p>
+			</xsl:if>
 			<xsl:apply-templates select="tagname"/>
 			<xsl:if test="remarks or text()">
 				<h3>Remarks</h3>

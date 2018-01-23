@@ -13,7 +13,7 @@
 	DL { MARGIN-LEFT: 4em; DISPLAY: compact }
 	DT { FONT-WEIGHT: bold }
 	A:link { COLOR: #4e4887 }
-	A:visited { COLOR: #8080c8 }
+	A:visited { COLOR: #4e4887 }
 	A:active { COLOR: #f16043 }
 	A:hover { COLOR: #f16043 }
 	P { MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 0.5em; MARGIN-LEFT: 4em }

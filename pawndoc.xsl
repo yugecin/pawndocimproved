@@ -214,17 +214,13 @@
 </xsl:template>
 
 <xsl:template match="tagname">
-	<p class="noindent"><table><tr>
-		<td class="header inline">Tag</td>
-		<td class="inline"><xsl:value-of select="@value"/></td>
-	</tr></table></p>
+	<h3>Tag</h3>
+	<p><xsl:value-of select="@value"/></p>
 </xsl:template>
 
 <xsl:template match="size">
-	<p class="noindent"><table><tr>
-		<td class="header inline">Size</td>
-		<td class="inline"><xsl:value-of select="@value"/></td>
-	</tr></table></p>
+	<h3>Size</h3>
+	<p><xsl:value-of select="@value"/></p>
 </xsl:template>
 
 <xsl:template match="returns">

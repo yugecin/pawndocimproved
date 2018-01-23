@@ -73,8 +73,8 @@
 				<h3>Remarks</h3>
 				<xsl:apply-templates select="remarks"/>
 				<xsl:if test="text()">
-  			  <p><xsl:apply-templates select="text()"/></p>
-  			</xsl:if>
+				<p><xsl:apply-templates select="text()"/></p>
+			</xsl:if>
 			</xsl:if>
 			<xsl:if test="member">
 				<h3>Members</h3>
@@ -108,7 +108,7 @@
 				<xsl:apply-templates select="remarks"/>
 				<xsl:if test="text()">
 				<p><xsl:apply-templates select="text()"/></p>
-  			</xsl:if>
+			</xsl:if>
 			</xsl:if>
 			<xsl:apply-templates select="example"/>
 			<xsl:if test="referrer">
@@ -139,7 +139,7 @@
 				<xsl:apply-templates select="remarks"/>
 				<xsl:if test="text()">
 				<p><xsl:apply-templates select="text()"/></p>
-  			</xsl:if>
+			</xsl:if>
 			</xsl:if>
 			<xsl:apply-templates select="example"/>
 			<xsl:if test="referrer">
@@ -182,7 +182,7 @@
 				<xsl:apply-templates select="remarks"/>
 				<xsl:if test="text()">
 				<p><xsl:apply-templates select="text()"/></p>
-  			</xsl:if>
+			</xsl:if>
 			</xsl:if>
 			<xsl:apply-templates select="example"/>
 			<xsl:if test="referrer">

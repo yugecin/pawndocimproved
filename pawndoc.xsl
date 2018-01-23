@@ -103,7 +103,8 @@
 		<xsl:when test="substring(@name,1,2) = 'C:'">
 			<h2 class="constant"><xsl:attribute name="id"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><span>constant</span><a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a></h2>
 			<xsl:apply-templates select="summary"/>
-			<p class="noindent"><table><tr><td class="header inline">Value</td><td class="inline"><xsl:value-of select="@value"/></td></tr></table></p>
+			<h3>Value</h3>
+			<p><xsl:value-of select="@value"/></p>
 			<xsl:apply-templates select="tagname"/>
 			<xsl:apply-templates select="size"/>
 			<xsl:if test="remarks or text()">

@@ -45,6 +45,7 @@
 	H2.function { BORDER-COLOR: #818748; COLOR: #818748; }
 	H2 SPAN { FLOAT: right; PADDING-RIGHT: 2px; }
 	H2.general { BORDER: none; COLOR: #4E4887; }
+	H2 A { TEXT-DECORATION: none; }
 	H3 { COLOR: #4e4887; FONT-SIZE: x-small; MARGIN-BOTTOM: 0.5em }
 	H4 { COLOR: #4e4887; FONT-SIZE: x-small; FONT-STYLE: italic; MARGIN-BOTTOM: 0.5em }
 	H5 { COLOR: #4e4887; FONT-SIZE: xx-small; MARGIN-BOTTOM: 0.5em }
@@ -67,7 +68,7 @@
 <xsl:template match="member">
 	<xsl:choose>
 		<xsl:when test="substring(@name,1,2) = 'T:'">
-			<a><xsl:attribute name="name"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><h2><span>enumeration</span><xsl:value-of select="substring(@name,3)"/></h2></a>
+			<h2><xsl:attribute name="id"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><span>enumeration</span><a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a></h2>
 			<xsl:apply-templates select="summary"/>
 			<xsl:if test="remarks or text()">
 				<h3>Remarks</h3>
@@ -98,7 +99,7 @@
 			</xsl:if>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'C:'">
-			<a><xsl:attribute name="name"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><h2 class="constant"><span>constant</span><xsl:value-of select="substring(@name,3)"/></h2></a>
+			<h2 class="constant"><xsl:attribute name="id"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><span>constant</span><a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a></h2>
 			<xsl:apply-templates select="summary"/>
 			<p class="noindent"><table><tr><td class="header inline">Value</td><td class="inline"><xsl:value-of select="@value"/></td></tr></table></p>
 			<xsl:apply-templates select="tagname"/>
@@ -126,7 +127,7 @@
 			</xsl:if>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'M:'">
-			<a><xsl:attribute name="name"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><h2 class="function"><span>function</span><xsl:value-of select="substring(@name,3)"/></h2></a>
+			<h2 class="function"><xsl:attribute name="id"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><span>function</span><a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a></h2>
 			<xsl:apply-templates select="summary"/>
 			<h3>Syntax</h3><p class="syntax"><xsl:value-of select="@syntax"/></p>
 			<xsl:if test="param">
@@ -173,7 +174,7 @@
 			</xsl:if>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'F:'">
-			<a><xsl:attribute name="name"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><h2 class="variable"><span>variable</span><xsl:value-of select="substring(@name,3)"/></h2></a>
+			<h2 class="variable"><xsl:attribute name="id"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><span>variable</span><a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a></h2>
 			<xsl:apply-templates select="summary"/>
 			<h3>Syntax</h3><p class="syntax"><xsl:value-of select="@syntax"/></p>
 			<xsl:apply-templates select="tagname"/>

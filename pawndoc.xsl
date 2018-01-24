@@ -242,6 +242,7 @@
 			</xsl:if>
 		</xsl:when>
 	</xsl:choose>
+	<p class="noindent"><a href="#">Top</a></p>
 </xsl:template>
 
 <xsl:template match="summary">

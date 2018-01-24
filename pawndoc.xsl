@@ -46,20 +46,56 @@
 	H2.variable { BORDER-COLOR: #48876D; COLOR: #48876D; }
 	H2.function { BORDER-COLOR: #818748; COLOR: #818748; }
 	H2 SPAN { FLOAT: right; PADDING-RIGHT: 2px; }
-	H2.general { BORDER: none; COLOR: #4E4887; }
+	H2.general { COLOR: #4E4887; }
+	H2.general, DIV H2 { BORDER: none; }
 	H2 A { TEXT-DECORATION: none; }
 	H3 { COLOR: #4e4887; FONT-SIZE: x-small; MARGIN-BOTTOM: 0.5em }
 	H4 { COLOR: #4e4887; FONT-SIZE: x-small; FONT-STYLE: italic; MARGIN-BOTTOM: 0.5em }
 	H5 { COLOR: #4e4887; FONT-SIZE: xx-small; MARGIN-BOTTOM: 0.5em }
 	H6 { COLOR: #4e4887; FONT-SIZE: xx-small; FONT-STYLE: italic; MARGIN-BOTTOM: 0.5em }
+	DIV { BACKGROUND: #EEEEEE; PADDING: 0.2em 2em; PADDING-BOTTOM: 0.4em; MARGIN-BOTTOM: 2em; }
+	DIV UL { LIST-STYLE: none; }
 </STYLE>
 </HEAD>
 <BODY>
 	<h1><xsl:value-of select="doc/assembly/name"/></h1>
 	<xsl:apply-templates select="doc/general"/>
+	<xsl:call-template name="index">
+		<xsl:with-param name="name" select="'enumeration'" />
+		<xsl:with-param name="type" select="'T:'" />
+	</xsl:call-template>
+	<xsl:call-template name="index">
+		<xsl:with-param name="name" select="'constant'" />
+		<xsl:with-param name="type" select="'C:'" />
+	</xsl:call-template>
+	<xsl:call-template name="index">
+		<xsl:with-param name="name" select="'variable'" />
+		<xsl:with-param name="type" select="'F:'" />
+	</xsl:call-template>
+	<xsl:call-template name="index">
+		<xsl:with-param name="name" select="'function'" />
+		<xsl:with-param name="type" select="'M:'" />
+	</xsl:call-template>
 	<xsl:apply-templates select="doc/members/member"/>
 </BODY>
 </HTML>
+</xsl:template>
+
+<xsl:template name="index">
+	<xsl:param name="name"/>
+	<xsl:param name="type"/>
+	<div>
+		<h2>
+			<xsl:attribute name="class"><xsl:value-of select="$name"/></xsl:attribute>
+			<xsl:value-of select="translate(substring($name,1,1),'ecvf','ECVF')"/>
+			<xsl:value-of select="substring($name,2)"/>s (<xsl:value-of select="count(doc/members/member[starts-with(@name,$type)])"/>)
+		</h2>
+		<ul>
+			<xsl:for-each select="doc/members/member[starts-with(@name,$type)]">
+				<li><a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a></li>
+			</xsl:for-each>
+		</ul>
+	</div>
 </xsl:template>
 
 <xsl:template match="general">

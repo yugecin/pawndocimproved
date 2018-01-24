@@ -10,8 +10,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <TITLE><xsl:value-of select="doc/assembly/name"/></TITLE>
 <STYLE type="text/css">
-	BODY { FONT-FAMILY: "Verdana", sans-serif; FONT-SIZE: x-small; }
-	CODE { FONT-SIZE: x-small; }
+	BODY { FONT-FAMILY: "Tahoma", sans-serif; }
 	DL { MARGIN-LEFT: 4em; DISPLAY: compact }
 	DT { FONT-WEIGHT: bold }
 	A:link { COLOR: #4e4887 }
@@ -22,17 +21,17 @@
 	P.noindent { MARGIN-LEFT: 0em }
 	P.syntax { FONT-WEIGHT: bold }
 	HR.para { HEIGHT: 0; BORDER: 0; COLOR: white; BACKGROUND-COLOR: transparent; MARGIN-TOP: 0.5em; MARGIN-BOTTOM: 0; }
-	XMP { BACKGROUND-COLOR: #ddeeff; FONT-SIZE: x-small; MARGIN: 1em }
-	PRE { BACKGROUND-COLOR: #ddeeff; FONT-SIZE: x-small; MARGIN: 1em }
+	XMP { BACKGROUND-COLOR: #ddeeff; MARGIN: 1em }
+	PRE { BACKGROUND-COLOR: #ddeeff; MARGIN: 1em }
 	TABLE { BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none }
 	TABLE.param { BACKGROUND-COLOR: #ddeeff; }
 	TABLE.transition { BACKGROUND-COLOR: #ddeeff; }
-	TD { BACKGROUND-COLOR: #ddeeff; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: x-small; MARGIN: 2px; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; PADDING-TOP: 2px; TEXT-ALIGN: left }
+	TD { BACKGROUND-COLOR: #ddeeff; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; MARGIN: 2px; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; PADDING-TOP: 2px; TEXT-ALIGN: left }
 	TD.header { BACKGROUND-COLOR: transparent; FONT-WEIGHT: bold; COLOR: #4e4887; WIDTH: 3.3em; PADDING-LEFT: 0px; MARGIN-BOTTOM: 0.5em }
 	TD.inline { BACKGROUND-COLOR: transparent }
 	TD.param { FONT-WEIGHT: bold; FONT-STYLE: italic; PADDING-RIGHT: 20px; }
 	TD.transition { PADDING-RIGHT: 10px; }
-	TH { BACKGROUND-COLOR: #336699; COLOR: #ddeeff; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: x-small; MARGIN: 2px; PADDING-BOTTOM: 2px; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; PADDING-TOP: 2px; TEXT-ALIGN: left }
+	TH { BACKGROUND-COLOR: #336699; COLOR: #ddeeff; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; MARGIN: 2px; PADDING-BOTTOM: 2px; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; PADDING-TOP: 2px; TEXT-ALIGN: left }
 	UL { MARGIN-TOP: 0.5em; }
 	LI.referrer { DISPLAY: inline; PADDING-RIGHT: 8px }
 	LI.dependency { DISPLAY: inline; PADDING-RIGHT: 8px }
@@ -40,8 +39,8 @@
 	LI.attribute { DISPLAY: inline; PADDING-RIGHT: 8px }
 	OL { MARGIN-TOP: 0.5em; }
 	SPAN.paraminfo { FONT-WEIGHT:Bold; COLOR: #336699; }
-	H1 { COLOR: #336699; FONT-SIZE: x-large; MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 1em; PADDING-LEFT: 4px }
-	H2 { BORDER-RIGHT: #000 8px solid; FONT-SIZE: medium; BORDER-TOP: #000 2px solid; COLOR: #000; MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 1em; }
+	H1 { COLOR: #336699; FONT-SIZE: 2em; MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 1em; PADDING-LEFT: 4px }
+	H2 { BORDER-RIGHT: #000 8px solid; FONT-SIZE: 1.3em; BORDER-TOP: #000 2px solid; COLOR: #000; MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 1em; }
 	H2.constant { BORDER-COLOR: #874862; COLOR: #874862; }
 	H2.variable { BORDER-COLOR: #48876D; COLOR: #48876D; }
 	H2.function { BORDER-COLOR: #818748; COLOR: #818748; }
@@ -49,10 +48,10 @@
 	H2.general { COLOR: #4E4887; }
 	H2.general, DIV H2 { BORDER: none; }
 	H2 A { TEXT-DECORATION: none; }
-	H3 { COLOR: #4e4887; FONT-SIZE: x-small; MARGIN-BOTTOM: 0.5em }
-	H4 { COLOR: #4e4887; FONT-SIZE: x-small; FONT-STYLE: italic; MARGIN-BOTTOM: 0.5em }
-	H5 { COLOR: #4e4887; FONT-SIZE: xx-small; MARGIN-BOTTOM: 0.5em }
-	H6 { COLOR: #4e4887; FONT-SIZE: xx-small; FONT-STYLE: italic; MARGIN-BOTTOM: 0.5em }
+	H3 { COLOR: #4e4887; FONT-SIZE: 1em; MARGIN-BOTTOM: 0.5em }
+	H4 { COLOR: #4e4887; FONT-SIZE: 1em; FONT-STYLE: italic; MARGIN-BOTTOM: 0.5em }
+	H5 { COLOR: #4e4887; FONT-SIZE: 0.8em; MARGIN-BOTTOM: 0.5em }
+	H6 { COLOR: #4e4887; FONT-SIZE: 0.8em; FONT-STYLE: italic; MARGIN-BOTTOM: 0.5em }
 	DIV { BACKGROUND: #EEEEEE; PADDING: 0.2em 2em; PADDING-BOTTOM: 0.4em; MARGIN-BOTTOM: 2em; }
 	DIV UL { LIST-STYLE: none; }
 </STYLE>

@@ -102,10 +102,22 @@
     <br/>
 </xsl:template>
 
+<xsl:template name="memberheader">
+	<xsl:param name="name"/>
+	<h2>
+		<xsl:attribute name="id"><xsl:value-of select="substring(@name,3)"/></xsl:attribute>
+		<xsl:attribute name="class"><xsl:value-of select="$name"/></xsl:attribute>
+		<span><xsl:value-of select="$name"/></span>
+		<a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a>
+	</h2>
+</xsl:template>
+
 <xsl:template match="member">
 	<xsl:choose>
 		<xsl:when test="substring(@name,1,2) = 'T:'">
-			<h2><xsl:attribute name="id"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><span>enumeration</span><a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a></h2>
+			<xsl:call-template name="memberheader">
+				<xsl:with-param name="name" select="'enumeration'"/>
+			</xsl:call-template>
 			<xsl:apply-templates select="summary"/>
 			<xsl:if test="remarks or text()">
 				<h3>Remarks</h3>
@@ -136,7 +148,9 @@
 			</xsl:if>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'C:'">
-			<h2 class="constant"><xsl:attribute name="id"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><span>constant</span><a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a></h2>
+			<xsl:call-template name="memberheader">
+				<xsl:with-param name="name" select="'constant'"/>
+			</xsl:call-template>
 			<xsl:apply-templates select="summary"/>
 			<h3>Value</h3>
 			<p><xsl:value-of select="@value"/></p>
@@ -165,7 +179,9 @@
 			</xsl:if>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'M:'">
-			<h2 class="function"><xsl:attribute name="id"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><span>function</span><a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a></h2>
+			<xsl:call-template name="memberheader">
+				<xsl:with-param name="name" select="'function'"/>
+			</xsl:call-template>
 			<xsl:apply-templates select="summary"/>
 			<h3>Syntax</h3><p class="syntax"><xsl:value-of select="@syntax"/></p>
 			<xsl:if test="param">
@@ -212,7 +228,9 @@
 			</xsl:if>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'F:'">
-			<h2 class="variable"><xsl:attribute name="id"><xsl:value-of select="substring(@name,3)"/></xsl:attribute><span>variable</span><a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a></h2>
+			<xsl:call-template name="memberheader">
+				<xsl:with-param name="name" select="'variable'"/>
+			</xsl:call-template>
 			<xsl:apply-templates select="summary"/>
 			<xsl:if test="@syntax">
 				<h3>Syntax</h3><p class="syntax"><xsl:value-of select="@syntax"/></p>

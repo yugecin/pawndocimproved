@@ -10,7 +10,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <TITLE><xsl:value-of select="doc/assembly/name"/></TITLE>
 <STYLE type="text/css">
-	BODY { FONT-FAMILY: "Tahoma", sans-serif; }
+	BODY { FONT-FAMILY: "Tahoma", sans-serif; MAX-WIDTH: 900px; }
 	DL { MARGIN-LEFT: 4em; DISPLAY: compact }
 	DT { FONT-WEIGHT: bold }
 	A:link { COLOR: #4e4887 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 <!-- Version: $Id: pawndoc.xsl 5182 2015-01-28 10:21:43Z  $ -->
+<!-- edit: https://github.com/yugecin/pawndocimproved -->
 
 <xsl:strip-space elements="*"/>
 

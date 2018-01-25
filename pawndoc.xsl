@@ -361,6 +361,10 @@
 
 <xsl:template match="em"><em><xsl:apply-templates/></em></xsl:template>
 
+<xsl:template match="b"><strong><xsl:apply-templates/></strong></xsl:template>
+
+<xsl:template match="strong"><strong><xsl:apply-templates/></strong></xsl:template>
+
 <xsl:template match="ul"><ul><xsl:apply-templates/></ul></xsl:template>
 
 <xsl:template match="ol"><ol><xsl:apply-templates/></ol></xsl:template>

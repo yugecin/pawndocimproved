@@ -357,6 +357,8 @@
 	<i><xsl:value-of select="@name"/></i>
 </xsl:template>
 
+<xsl:template match="a"><a><xsl:attribute name="href"><xsl:value-of select="@href"/></xsl:attribute><xsl:apply-templates/></a></xsl:template>
+
 <xsl:template match="c"><code><xsl:apply-templates/></code></xsl:template>
 
 <xsl:template match="em"><em><xsl:apply-templates/></em></xsl:template>

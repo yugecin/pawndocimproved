@@ -48,6 +48,8 @@
 	H2.general { COLOR: #4E4887; }
 	H2.general, DIV H2 { BORDER: none; }
 	H2 A { TEXT-DECORATION: none; }
+	H2 A.wiki { FONT-SIZE: 60%; COLOR: #BBB; MARGIN-LEFT: 1em; TEXT-DECORATION: underline; }
+	H2 A.wiki:active, H2 A.wiki:hover { COLOR: #f16043; }
 	H3 { COLOR: #4e4887; FONT-SIZE: 1em; MARGIN-BOTTOM: 0.5em }
 	H4 { COLOR: #4e4887; FONT-SIZE: 1em; FONT-STYLE: italic; MARGIN-BOTTOM: 0.5em }
 	H5 { COLOR: #4e4887; FONT-SIZE: 0.8em; MARGIN-BOTTOM: 0.5em }
@@ -109,6 +111,7 @@
 		<xsl:attribute name="class"><xsl:value-of select="$name"/></xsl:attribute>
 		<span><xsl:value-of select="$name"/></span>
 		<a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a>
+		<a class="wiki" target="_blank"><xsl:attribute name="href">http://wiki.sa-mp.com/wiki/<xsl:value-of select="substring(@name,3)"/></xsl:attribute>wiki</a>
 	</h2>
 </xsl:template>
 

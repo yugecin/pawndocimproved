@@ -34,9 +34,9 @@
 	TD.transition { PADDING-RIGHT: 10px; }
 	TH { BACKGROUND-COLOR: #336699; COLOR: #ddeeff; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; MARGIN: 2px; PADDING-BOTTOM: 2px; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; PADDING-TOP: 2px; TEXT-ALIGN: left }
 	UL { MARGIN-TOP: 0.5em; MARGIN-LEFT: 4em; PADDING-LEFT: 0; }
-	LI.referrer { DISPLAY: inline; PADDING-RIGHT: 8px }
-	LI.dependency { DISPLAY: inline; PADDING-RIGHT: 8px }
-	LI.seealso { DISPLAY: inline; PADDING-RIGHT: 8px }
+	LI.referrer { DISPLAY: inline-block; PADDING-RIGHT: 8px }
+	LI.dependency { DISPLAY: inline-block; PADDING-RIGHT: 8px }
+	LI.seealso { DISPLAY: inline-block; PADDING-RIGHT: 8px }
 	LI.attribute { DISPLAY: inline; PADDING-RIGHT: 8px }
 	OL { MARGIN-TOP: 0.5em; }
 	SPAN.paraminfo { FONT-WEIGHT:Bold; COLOR: #336699; }

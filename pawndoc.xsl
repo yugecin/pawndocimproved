@@ -78,7 +78,7 @@
 		<xsl:with-param name="name" select="'function'" />
 		<xsl:with-param name="type" select="'M:'" />
 	</xsl:call-template>
-	<xsl:apply-templates select="doc/members/member"/>
+	<xsl:apply-templates select="doc/members/member[not(@name='F:__file' or @name='F:__date' or @name='F:__time')]"/>
 </BODY>
 </HTML>
 </xsl:template>
@@ -87,13 +87,15 @@
 	<xsl:param name="name"/>
 	<xsl:param name="type"/>
 	<div>
+		<xsl:variable name="members0" select="doc/members/member[starts-with(@name,$type)]"/>
+		<xsl:variable name="members" select="$members0[not(@name='F:__file' or @name='F:__date' or @name='F:__time')]"/>
 		<h2>
 			<xsl:attribute name="class"><xsl:value-of select="$name"/></xsl:attribute>
 			<xsl:value-of select="translate(substring($name,1,1),'ecvf','ECVF')"/>
-			<xsl:value-of select="substring($name,2)"/>s (<xsl:value-of select="count(doc/members/member[starts-with(@name,$type)])"/>)
+			<xsl:value-of select="substring($name,2)"/>s (<xsl:value-of select="count($members)"/>)
 		</h2>
 		<ul>
-			<xsl:for-each select="doc/members/member[starts-with(@name,$type)]">
+			<xsl:for-each select="$members">
 				<li><a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a></li>
 			</xsl:for-each>
 		</ul>

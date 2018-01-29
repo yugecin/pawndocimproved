@@ -15,6 +15,11 @@ Changes (doesn't include all; see commits for everything):
 * support for `<b> <strong> <a>` tags
 * ignore `__file __date __time` members
 
+### demo
+
+* [sample script with original style](https://yugecin.github.io/pawndocimproved/report1.xml)
+* [sample script with 'improved' style](https://yugecin.github.io/pawndocimproved/report2.xml)
+
 ### howto
 
 See the PAWN language guide page 52: _A tutorial introduction - Documentation comments_ for the PAWN documentation syntax.

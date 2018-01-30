@@ -26,7 +26,7 @@ See the PAWN language guide page 52: _A tutorial introduction - Documentation co
 
 Use the `-rfilename` PAWN compiler option to generate a report of your code in XML format.
 
-After the report was generated, change the `xml-stylesheet` href to `pawndoc.xsl` and put this xsl in the same folder.
+After the report was generated, change the `xml-stylesheet` href to `pawndoc.xsl` and put this xsl in the same folder. You could also just use `https://raw.githubusercontent.com/yugecin/pawndocimproved/master/pawndoc.xsl`, but this only works in IE and Firefox,  chromium does not allow cross domain resources.
 
 ---
 

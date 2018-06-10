@@ -280,7 +280,7 @@
 </xsl:template>
 
 <xsl:template match="paraminfo">
-	<span class="paraminfo">&lt;<xsl:apply-templates/>&gt;</span>
+	<span class="paraminfo">&lt;<xsl:value-of select="normalize-space(.)"/>&gt;</span>
 </xsl:template>
 
 <xsl:template match="tagname">

@@ -14,11 +14,13 @@ Changes (doesn't include all; see commits for everything):
 * auto link to sa-mp wiki for every member
 * support for `<b> <strong> <a>` tags
 * ignore `__file __date __time` members
+* added table of keys appendix for SA-MP's key definitions
 
 ### demo
 
 * [sample script with original style](https://yugecin.github.io/pawndocimproved/report1.xml)
 * [sample script with 'improved' style](https://yugecin.github.io/pawndocimproved/report2.xml)
+* [docs of complete SA-MP PAWN API](https://basdon.github.io/documented-samp-pawn-api/main.xml)
 
 ### howto
 

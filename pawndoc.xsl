@@ -57,6 +57,7 @@
 	H6 { COLOR: #4e4887; FONT-SIZE: 0.8em; FONT-STYLE: italic; MARGIN-BOTTOM: 0.5em }
 	DIV { BACKGROUND: #EEEEEE; PADDING: 0.2em 2em; PADDING-BOTTOM: 0.4em; MARGIN-BOTTOM: 2em; }
 	DIV UL { LIST-STYLE: none; }
+	SUP { FONT-WEIGHT: bold; }
 </STYLE>
 </HEAD>
 <BODY>
@@ -78,7 +79,57 @@
 		<xsl:with-param name="name" select="'function'" />
 		<xsl:with-param name="type" select="'M:'" />
 	</xsl:call-template>
+	<div>
+		<h2>Appendices (1)</h2>
+		<ul>
+			<li><a href="#Appendix_A_Keys">Appendix A: Table of Keys</a></li>
+		</ul>
+	</div>
 	<xsl:apply-templates select="doc/members/member[not(@name='F:__file' or @name='F:__date' or @name='F:__time')]"/>
+	<xsl:call-template name="memberheader">
+		<xsl:with-param name="membertype" select="'appendix'"/>
+		<xsl:with-param name="membername" select="'Appendix A: Table of keys'"/>
+		<xsl:with-param name="anchor" select="'Appendix_A_Keys'"/>
+	</xsl:call-template>
+	<table style="width:100%">
+		<thead>
+			<tr><th>Value</th><th>Macro</th><th>On foot GXT</th><th>In vehicle GXT</th><th>On foot default</th><th>In vehicle default</th></tr>
+		</thead>
+		<tbody style="font-family:monospace">
+			<tr><td>0x1</td><td>KEY_ACTION</td><td>~k~~PED_ANSWER_PHONE~</td><td>~k~~VEHICLE_FIREWEAPON_ALT~</td><td>TAB</td><td>ALT GR / LCTRL / NUM0</td></tr>
+			<tr><td>0x2</td><td>KEY_CROUCH</td><td>~k~~PED_DUCK~</td><td>~k~~VEHICLE_HORN~</td><td>C</td><td>H / CAPSLOCK</td></tr>
+			<tr><td>0x4</td><td>KEY_FIRE</td><td>~k~~PED_FIREWEAPON~</td><td>~k~~VEHICLE_FIREWEAPON~</td><td>LCTRL / LMB</td><td>LALT</td></tr>
+			<tr><td>0x8</td><td>KEY_SPRINT</td><td>~k~~PED_SPRINT~</td><td>~k~~VEHICLE_ACCELERATE~</td><td>SPACE</td><td>W</td></tr>
+			<tr><td>0x10</td><td>KEY_SECONDARY_ATTACK</td><td>~k~~VEHICLE_ENTER_EXIT~</td><td>~k~~VEHICLE_ENTER_EXIT~</td><td>ENTER</td><td>ENTER</td></tr>
+			<tr><td>0x20</td><td>KEY_JUMP</td><td>~k~~PED_JUMPING~</td><td>~k~~VEHICLE_BRAKE~</td><td>LSHIFT</td><td>S</td></tr>
+			<tr><td>0x40</td><td>KEY_LOOK_RIGHT</td><td>-</td><td>~k~~VEHICLE_LOOKRIGHT~</td><td>-</td><td>E</td></tr>
+			<tr><td>0x80</td><td>KEY_HANDBRAKE/KEY_AIM</td><td>~k~~PED_LOCK_TARGET~</td><td>~k~~VEHICLE_HANDBRAKE~</td><td>RMB</td><td>SPACE</td></tr>
+			<tr><td>0x100</td><td>KEY_LOOK_LEFT</td><td>-</td><td>~k~~VEHICLE_LOOKLEFT~</td><td>-</td><td>Q</td></tr>
+			<tr><td>0x140</td><td>KEY_LOOK_BEHIND</td><td>~k~~PED_LOOKBEHIND~</td><td>~k~~VEHICLE_LOOKBEHIND~</td><td>NUM1 / MMB</td><td>2</td></tr>
+			<tr><td>0x200</td><td>KEY_SUBMISSION</td><td>-</td><td>~k~~TOGGLE_SUBMISSIONS~</td><td>NUM1 / MMB</td><td>2 / NUMPAD +</td></tr>
+			<tr><td>0x400</td><td>KEY_WALK</td><td>~k~~SNEAK_ABOUT~</td><td>-</td><td>LALT</td><td>-</td></tr>
+			<tr><td>0x800</td><td>KEY_ANALOG_UP</td><td>-</td><td>~k~~VEHICLE_TURRETUP~</td><td>NUM8<sup>(4)</sup></td><td>NUM8</td></tr>
+			<tr><td>0x1000</td><td>KEY_ANALOG_DOWN</td><td>-</td><td>~k~~VEHICLE_TURRETDOWN~</td><td>NUM2<sup>(4)</sup></td><td>NUM2</td></tr>
+			<tr><td>0x2000</td><td>KEY_ANALOG_LEFT</td><td>~k~~VEHICLE_LOOKLEFT~</td><td>~k~~VEHICLE_TURRETLEFT~</td><td>NUM4</td><td>NUM4</td></tr>
+			<tr><td>0x4000</td><td>KEY_ANALOG_RIGHT</td><td>~k~~VEHICLE_LOOKRIGHT~</td><td>~k~~VEHICLE_TURRETRIGHT~</td><td>NUM6</td><td>NUM6</td></tr>
+			<tr><td>0x10000</td><td>KEY_YES(2)</td><td>~k~~CONVERSATION_YES~</td><td>~k~~CONVERSATION_YES~</td><td>Y</td><td>Y</td></tr>
+			<tr><td>0x20000</td><td>KEY_NO(2)</td><td>~k~~CONVERSATION_NO~</td><td>~k~~CONVERSATION_NO~</td><td>N</td><td>N</td></tr>
+			<tr><td>0x40000<sup>(3)</sup></td><td>KEY_CTRL_BACK<sup>(1)</sup></td><td>~k~~GROUP_CONTROL_BWD~</td><td>~k~~GROUP_CONTROL_BWD~</td><td>H</td><td>H</td></tr>
+			<tr><td>-<sup>(2)</sup></td><td>-</td><td>~k~~GROUP_CONTROL_FWD~</td><td>~k~~GROUP_CONTROL_FWD~</td><td>G</td><td>G</td></tr>
+			<tr><td>[-128,-1]</td><td>KEY_UP</td><td>~k~~GO_FORWARD~</td><td>~k~~VEHICLE_STEERUP~</td><td>UP</td><td>UP</td></tr>
+			<tr><td>[1,128]</td><td>KEY_DOWN</td><td>~k~~GO_BACK~</td><td>~k~~VEHICLE_STEERDOWN~</td><td>DOWN</td><td>DOWN</td></tr>
+			<tr><td>[-128,-1]</td><td>KEY_LEFT</td><td>~k~~GO_LEFT~</td><td>~k~~VEHICLE_STEERLEFT~</td><td>LEFT</td><td>LEFT</td></tr>
+			<tr><td>[1,128]</td><td>KEY_RIGHT</td><td>~k~~GO_RIGHT~</td><td>~k~~VEHICLE_STEERRIGHT~</td><td>RIGHT</td><td>RIGHT</td></tr>
+		</tbody>
+	</table>
+	<h3>Remarks</h3>
+	<ul>
+		<li><strong>(1)</strong> Since 0.3d. Cannot be detected while the player is in spectator mode.</li>
+		<li><strong>(2)</strong> Cannot be detected, <code>GROUP_CONTROL_FWD</code> is used to enter as passenger.</li>
+		<li><strong>(3)</strong> If this doesn't work, use <code>2</code>. (what?)</li>
+		<li><strong>(4)</strong> Only detected when JOYPAD configuration is selected.</li>
+	</ul>
+	<p class="noindent"><a href="#">Top</a></p>
 </BODY>
 </HTML>
 </xsl:template>
@@ -108,13 +159,15 @@
 </xsl:template>
 
 <xsl:template name="memberheader">
-	<xsl:param name="name"/>
+	<xsl:param name="membertype"/>
+	<xsl:param name="membername"/>
+	<xsl:param name="anchor"/>
 	<h2>
-		<xsl:attribute name="id"><xsl:value-of select="substring(@name,3)"/></xsl:attribute>
-		<xsl:attribute name="class"><xsl:value-of select="$name"/></xsl:attribute>
-		<span><xsl:value-of select="$name"/></span>
-		<a><xsl:attribute name="href">#<xsl:value-of select="substring(@name,3)"/></xsl:attribute><xsl:value-of select="substring(@name,3)"/></a>
-		<a class="wiki" target="_blank"><xsl:attribute name="href">http://wiki.sa-mp.com/wiki/<xsl:value-of select="substring(@name,3)"/></xsl:attribute>wiki</a>
+		<xsl:attribute name="id"><xsl:value-of select="$anchor"/></xsl:attribute>
+		<xsl:attribute name="class"><xsl:value-of select="$membertype"/></xsl:attribute>
+		<span><xsl:value-of select="$membertype"/></span>
+		<a><xsl:attribute name="href">#<xsl:value-of select="$anchor"/></xsl:attribute><xsl:value-of select="$membername"/></a>
+		<a class="wiki" target="_blank"><xsl:attribute name="href">http://wiki.sa-mp.com/wiki/<xsl:value-of select="$membername"/></xsl:attribute>wiki</a>
 	</h2>
 </xsl:template>
 
@@ -122,7 +175,9 @@
 	<xsl:choose>
 		<xsl:when test="substring(@name,1,2) = 'T:'">
 			<xsl:call-template name="memberheader">
-				<xsl:with-param name="name" select="'enumeration'"/>
+				<xsl:with-param name="membertype" select="'enumeration'"/>
+				<xsl:with-param name="membername" select="substring(@name,3)"/>
+				<xsl:with-param name="anchor" select="substring(@name,3)"/>
 			</xsl:call-template>
 			<xsl:apply-templates select="summary"/>
 			<xsl:if test="remarks or text()">
@@ -155,7 +210,9 @@
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'C:'">
 			<xsl:call-template name="memberheader">
-				<xsl:with-param name="name" select="'constant'"/>
+				<xsl:with-param name="membertype" select="'constant'"/>
+				<xsl:with-param name="membername" select="substring(@name,3)"/>
+				<xsl:with-param name="anchor" select="substring(@name,3)"/>
 			</xsl:call-template>
 			<xsl:apply-templates select="summary"/>
 			<h3>Value</h3>
@@ -186,7 +243,9 @@
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'M:'">
 			<xsl:call-template name="memberheader">
-				<xsl:with-param name="name" select="'function'"/>
+				<xsl:with-param name="membertype" select="'function'"/>
+				<xsl:with-param name="membername" select="substring(@name,3)"/>
+				<xsl:with-param name="anchor" select="substring(@name,3)"/>
 			</xsl:call-template>
 			<xsl:apply-templates select="summary"/>
 			<h3>Syntax</h3><p class="syntax"><xsl:value-of select="@syntax"/></p>
@@ -235,7 +294,9 @@
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'F:'">
 			<xsl:call-template name="memberheader">
-				<xsl:with-param name="name" select="'variable'"/>
+				<xsl:with-param name="membertype" select="'variable'"/>
+				<xsl:with-param name="membername" select="substring(@name,3)"/>
+				<xsl:with-param name="anchor" select="substring(@name,3)"/>
 			</xsl:call-template>
 			<xsl:apply-templates select="summary"/>
 			<xsl:if test="@syntax">

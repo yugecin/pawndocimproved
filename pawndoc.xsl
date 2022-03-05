@@ -167,7 +167,7 @@
 		<xsl:attribute name="class"><xsl:value-of select="$membertype"/></xsl:attribute>
 		<span><xsl:value-of select="$membertype"/></span>
 		<a><xsl:attribute name="href">#<xsl:value-of select="$anchor"/></xsl:attribute><xsl:value-of select="$membername"/></a>
-		<a class="wiki" target="_blank"><xsl:attribute name="href">http://wiki.sa-mp.com/wiki/<xsl:value-of select="$membername"/></xsl:attribute>wiki</a>
+		<a class="wiki" target="_blank"><xsl:attribute name="href">https://team.sa-mp.com/wiki/<xsl:value-of select="$membername"/></xsl:attribute>wiki</a>
 	</h2>
 </xsl:template>
 

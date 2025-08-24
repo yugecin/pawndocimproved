@@ -21,8 +21,6 @@
 	P { MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 0.5em; MARGIN-LEFT: 4em }
 	P.noindent { MARGIN-LEFT: 0em }
 	P.syntax { FONT-WEIGHT: bold }
-	HR.para { HEIGHT: 0; BORDER: 0; COLOR: white; BACKGROUND-COLOR: transparent; MARGIN-TOP: 0.5em; MARGIN-BOTTOM: 0; }
-	XMP { BACKGROUND-COLOR: #ddeeff; MARGIN: 1em }
 	PRE { BACKGROUND-COLOR: #ddeeff; MARGIN: 1em }
 	TABLE { BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none }
 	TABLE.param { BACKGROUND-COLOR: #ddeeff; }

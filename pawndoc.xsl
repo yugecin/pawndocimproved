@@ -21,8 +21,6 @@
 	P { MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 0.5em; MARGIN-LEFT: 4em }
 	P.noindent { MARGIN-LEFT: 0em }
 	P.syntax { FONT-WEIGHT: bold }
-	HR.para { HEIGHT: 0; BORDER: 0; COLOR: white; BACKGROUND-COLOR: transparent; MARGIN-TOP: 0.5em; MARGIN-BOTTOM: 0; }
-	XMP { BACKGROUND-COLOR: #ddeeff; MARGIN: 1em }
 	PRE { BACKGROUND-COLOR: #ddeeff; MARGIN: 1em }
 	TABLE { BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none }
 	TABLE.param { BACKGROUND-COLOR: #ddeeff; }
@@ -211,10 +209,7 @@
 				<ul><xsl:apply-templates select="dependency"/></ul>
 			</xsl:if>
 			<xsl:apply-templates select="location"/>
-			<xsl:if test="seealso">
-				<h3>See Also</h3>
-				<ul><xsl:apply-templates select="seealso"/></ul>
-			</xsl:if>
+			<xsl:call-template name="seealso-section"/>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'C:'">
 			<xsl:call-template name="memberheader">
@@ -244,10 +239,7 @@
 				<ul><xsl:apply-templates select="dependency"/></ul>
 			</xsl:if>
 			<xsl:apply-templates select="location"/>
-			<xsl:if test="seealso">
-				<h3>See Also</h3>
-				<ul><xsl:apply-templates select="seealso"/></ul>
-			</xsl:if>
+			<xsl:call-template name="seealso-section"/>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'M:'">
 			<xsl:call-template name="memberheader">
@@ -295,10 +287,7 @@
 			<xsl:apply-templates select="location"/>
 			<xsl:apply-templates select="stacksize"/>
 			<xsl:apply-templates select="codesize"/>
-			<xsl:if test="seealso">
-				<h3>See Also</h3>
-				<ul><xsl:apply-templates select="seealso"/></ul>
-			</xsl:if>
+			<xsl:call-template name="seealso-section"/>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'F:'">
 			<xsl:call-template name="memberheader">
@@ -328,10 +317,7 @@
 				<ul><xsl:apply-templates select="dependency"/></ul>
 			</xsl:if>
 			<xsl:apply-templates select="location"/>
-			<xsl:if test="seealso">
-				<h3>See Also</h3>
-				<ul><xsl:apply-templates select="seealso"/></ul>
-			</xsl:if>
+			<xsl:call-template name="seealso-section"/>
 		</xsl:when>
 	</xsl:choose>
 	<p class="noindent"><a href="#">Top</a></p>
@@ -420,8 +406,22 @@
 	<pre><xsl:apply-templates/></pre>
 </xsl:template>
 
-<xsl:template match="seealso">
+<xsl:template name="seealso-section">
+	<xsl:if test="seealso">
+		<h3>See Also</h3>
+		<xsl:if test="seealso[@name]">
+			<ul><xsl:apply-templates select="seealso[@name]"/></ul>
+		</xsl:if>
+		<xsl:apply-templates select="seealso[not(@name)]"/>
+	</xsl:if>
+</xsl:template>
+
+<xsl:template match="seealso[@name]">
 	<li class="seealso"><a><xsl:attribute name="href">#<xsl:value-of select="@name"/></xsl:attribute><xsl:value-of select="@name"/>()</a></li>
+</xsl:template>
+
+<xsl:template match="seealso[not(@name)]">
+	<p><xsl:apply-templates /></p>
 </xsl:template>
 
 <xsl:template match="paramref">

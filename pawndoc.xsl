@@ -50,6 +50,14 @@
 	H2.general, DIV H2 { BORDER: none; }
 	H2 A { TEXT-DECORATION: none; }
 	H2 A.wiki { FONT-SIZE: 60%; COLOR: #BBB; MARGIN-LEFT: 1em; TEXT-DECORATION: underline; }
+	H2 A.wiki::AFTER {
+		DISPLAY: inline-block;
+		CONTENT: '';
+		WIDTH: 8px;
+		HEIGHT: 8px;
+		MARGIN-LEFT: 3px;
+		BACKGROUND: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYUExURUdwTAAAAAAAAAAAAAAAAAAAAAAAAAAAAGgC1MsAAAAHdFJOUwCqxo5x4xyyUfqkAAAALElEQVQI12MIdFAvZxBgSAIR5uoMAizFSQwC5g4MDALFDCxAMQZGhkBBQVEAevcFF/vEFTYAAAAASUVORK5CYII=) no-repeat;
+	}
 	H2 A.wiki:active, H2 A.wiki:hover { COLOR: #f16043; }
 	H3 { COLOR: #4e4887; FONT-SIZE: 1em; MARGIN-BOTTOM: 0.5em }
 	H4 { COLOR: #4e4887; FONT-SIZE: 1em; FONT-STYLE: italic; MARGIN-BOTTOM: 0.5em }
@@ -167,7 +175,7 @@
 		<xsl:attribute name="class"><xsl:value-of select="$membertype"/></xsl:attribute>
 		<span><xsl:value-of select="$membertype"/></span>
 		<a><xsl:attribute name="href">#<xsl:value-of select="$anchor"/></xsl:attribute><xsl:value-of select="$membername"/></a>
-		<a class="wiki" target="_blank"><xsl:attribute name="href">https://team.sa-mp.com/wiki/<xsl:value-of select="$membername"/></xsl:attribute>wiki</a>
+		<a class="wiki" target="_blank"><xsl:attribute name="href">https://sampwiki.blast.hk/wiki/<xsl:value-of select="$membername"/></xsl:attribute>sampwiki.blast.hk</a>
 	</h2>
 </xsl:template>
 

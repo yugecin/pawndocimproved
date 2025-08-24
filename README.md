@@ -11,7 +11,7 @@ Changes (doesn't include all; see commits for everything):
 * fixed showing empty properties in firefox and chromium
 * generated index table
 * larger fontsize
-* auto link to sa-mp wiki for every member
+* link to sa-mp wiki mirror (sampwiki.blast.hk) for every member
 * support for `<b> <strong> <a>` tags
 * ignore `__file __date __time` members
 * added table of keys appendix for SA-MP's key definitions

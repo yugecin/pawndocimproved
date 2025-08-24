@@ -16,6 +16,7 @@ Changes (doesn't include all; see commits for everything):
 * support for `<b>` `<strong>` `<a>` tags in documentation
 * ignore `__file __date __time` members
 * added table of keys appendix for SA-MP's key definitions
+* allow freeform text in `<seealso>` docs, as the PAWN language guide mentions it can be used like that
 
 ### demo
 

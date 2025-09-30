@@ -22,7 +22,7 @@
 	P.noindent { MARGIN-LEFT: 0em }
 	P.syntax { FONT-WEIGHT: bold }
 	PRE { BACKGROUND-COLOR: #ddeeff; MARGIN: 1em }
-	TABLE { BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none }
+	TABLE { BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; WHITE-SPACE: nowrap }
 	TABLE.param { BACKGROUND-COLOR: #ddeeff; }
 	TABLE.transition { BACKGROUND-COLOR: #ddeeff; }
 	TD { BACKGROUND-COLOR: #ddeeff; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; MARGIN: 2px; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; PADDING-TOP: 2px; TEXT-ALIGN: left }
@@ -97,7 +97,7 @@
 		<xsl:with-param name="membername" select="'Appendix A: Table of keys'"/>
 		<xsl:with-param name="anchor" select="'Appendix_A_Keys'"/>
 	</xsl:call-template>
-	<table style="width:100%">
+	<table>
 		<thead>
 			<tr><th>Value</th><th>Macro</th><th>On foot GXT</th><th>In vehicle GXT</th><th>On foot default</th><th>In vehicle default</th></tr>
 		</thead>

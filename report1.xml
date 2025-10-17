@@ -53,6 +53,7 @@
 				some other param
 			</param>
 			<summary>this is shizzle func</summary>      <remarks>no comment</remarks>  <returns>absolutely nothing</returns> 
+			<seealso>freeform seealso text with <strong>strong</strong></seealso>
 		</member>
 		<member name="M:daysinmonth" syntax="daysinmonth(month, year)">
 			<stacksize value="4"/>
@@ -65,6 +66,7 @@
 				The year in 4 digits.  
 			</param>
 			<summary>  Returns the number of days in a month (the month is an integer  in the range 1 .. 12).  One needs to pass in the year as well,  because the function takes leap years into account.  </summary>     
+			<seealso name="weekday"/>
 		</member>
 		<member name="M:func" syntax="func(p)">
 			<tagname value="bool"/>
@@ -79,7 +81,7 @@
 				aoo  
 			</param>
 			<transition target="two" source="one"/>
-<p/> <summary>  func  <p/>  it's func  <p/>  example using <paramref name="p" />  <code>  blah blah  secondline  </code>  </summary>    <returns>  somethingggg alsofd <c>code</c> <em>it</em> <strong>hj</strong>  </returns>  <remarks>  such remark  <p/>  wew  </remarks>  <seealso>somethingelse main</seealso> 
+<p/> <summary>  func  <p/>  it's func  <p/>  example using <paramref name="p" />  <code>  blah blah  secondline  </code>  </summary>    <returns>  somethingggg alsofd <c>code</c> <em>it</em> <strong>hj</strong>  </returns>  <remarks>  such remark  <p/>  wew  </remarks>  <seealso name="main"/>  <seealso name="printf"/>  <seealso>freeform text with <strong>strong</strong></seealso>  <seealso>second freeform text</seealso>
 		</member>
 		<member name="M:getvalue" syntax="getvalue(base, term, ...)">
 			<attribute name="native"/>

@@ -18,8 +18,9 @@
 	A:visited { COLOR: #4e4887 }
 	A:active { COLOR: #f16043 }
 	A:hover { COLOR: #f16043 }
-	DIV.p, P.syntax, TABLE, PRE, UL, OL { MARGIN: 0.5em 0 }
+	DIV.p, DIV.p>p, P.syntax, TABLE, PRE, UL, OL { MARGIN: 0.5em 0 }
 	DIV.p, P.syntax, TABLE.param, TABLE.transition { MARGIN-LEFT: 4em }
+	DIV.para-margin { MARGIN-BOTTOM: 0.5em }
 	P.syntax { FONT-WEIGHT: bold }
 	PRE { BACKGROUND-COLOR: #ddeeff }
 	TABLE { BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; WHITE-SPACE: nowrap }
@@ -439,8 +440,18 @@
 <xsl:template match="ul"><ul><xsl:apply-templates/></ul></xsl:template>
 <xsl:template match="ol"><ol><xsl:apply-templates/></ol></xsl:template>
 <xsl:template match="li"><li><xsl:apply-templates/></li></xsl:template>
-<xsl:template match="p"><br/><xsl:apply-templates/></xsl:template>
-<xsl:template match="para"><br/><xsl:apply-templates/></xsl:template>
+<xsl:template match="br"><br/></xsl:template>
+<xsl:template match="p">
+	<xsl:choose>
+		<xsl:when test="text()">
+			<p><xsl:apply-templates select="text()"/></p>
+		</xsl:when>
+		<xsl:otherwise>
+			<div class="para-margin"></div>
+		</xsl:otherwise>
+	</xsl:choose>
+</xsl:template>
+<xsl:template match="para"><xsl:call-template name="p"/></xsl:template>
 <xsl:template match="section"><h2 class="general"><xsl:apply-templates/></h2></xsl:template>
 <xsl:template match="subsection"><h3 class="general"><xsl:apply-templates/></h3></xsl:template>
 <xsl:template match="table"><table><xsl:apply-templates/></table></xsl:template>

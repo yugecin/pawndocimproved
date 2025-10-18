@@ -14,7 +14,7 @@ Changes (doesn't include all; see commits for everything):
 * add link to 'top' at the end of every member section
 * link to sa-mp wiki mirror (sampwiki.blast.hk) for every member, this is only really useful for members of the SA-MP PAWN API as everything else will 404
 * fix invalid html nesting (most text was inside `p` tags, but that doesn't allow `<ul>` `<ol>` `<pre>` as children)
-* support for `<b>` `<strong>` `<a>` `table/thead/tbody/tr/th/td` tags in documentation
+* support for `<b>` `<strong>` `<a>` `table/thead/tbody/tr/th/td` `<br>` tags in documentation
 * ignore `__file __date __time` members
 * added table of keys appendix for SA-MP's key definitions
 * allow freeform text in `<seealso>` docs, as the PAWN language guide mentions it can be used like that

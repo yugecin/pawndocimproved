@@ -429,30 +429,23 @@
 	<i><xsl:value-of select="@name"/></i>
 </xsl:template>
 
-<xsl:template match="a"><a><xsl:attribute name="href"><xsl:value-of select="@href"/></xsl:attribute><xsl:apply-templates/></a></xsl:template>
-
+<xsl:template match="a">
+	<a>
+		<xsl:attribute name="href"><xsl:value-of select="@href"/></xsl:attribute>
+		<xsl:apply-templates/>
+	</a>
+</xsl:template>
 <xsl:template match="c"><code><xsl:apply-templates/></code></xsl:template>
-
 <xsl:template match="em"><em><xsl:apply-templates/></em></xsl:template>
-
 <xsl:template match="b"><strong><xsl:apply-templates/></strong></xsl:template>
-
 <xsl:template match="strong"><strong><xsl:apply-templates/></strong></xsl:template>
-
 <xsl:template match="ul"><ul><xsl:apply-templates/></ul></xsl:template>
-
 <xsl:template match="ol"><ol><xsl:apply-templates/></ol></xsl:template>
-
 <xsl:template match="li"><li><xsl:apply-templates/></li></xsl:template>
-
 <xsl:template match="p"><br/><xsl:apply-templates/></xsl:template>
-
 <xsl:template match="para"><br/><xsl:apply-templates/></xsl:template>
-
 <xsl:template match="section"><h2 class="general"><xsl:apply-templates/></h2></xsl:template>
-
 <xsl:template match="subsection"><h3 class="general"><xsl:apply-templates/></h3></xsl:template>
-
 <xsl:template match="table"><table><xsl:apply-templates/></table></xsl:template>
 <xsl:template match="thead"><thead><xsl:apply-templates/></thead></xsl:template>
 <xsl:template match="tbody">

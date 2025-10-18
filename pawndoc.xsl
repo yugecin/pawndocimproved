@@ -136,7 +136,7 @@
 		<li><strong>(3)</strong> If this doesn't work, use <code>2</code>. (what?)</li>
 		<li><strong>(4)</strong> Only detected when JOYPAD configuration is selected.</li>
 	</ul>
-	<p><a href="#">Top</a></p>
+	<p><small><a href="#">top</a></small></p>
 </BODY>
 </HTML>
 </xsl:template>
@@ -319,7 +319,7 @@
 			<xsl:call-template name="seealso-section"/>
 		</xsl:when>
 	</xsl:choose>
-	<p><a href="#">Top</a></p>
+	<p><small><a href="#">top</a></small></p>
 </xsl:template>
 
 <xsl:template match="summary">

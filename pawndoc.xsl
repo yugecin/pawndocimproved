@@ -433,6 +433,8 @@
 		<xsl:apply-templates/>
 	</a>
 </xsl:template>
+
+<xsl:template match="sup"><sup><xsl:apply-templates/></sup></xsl:template>
 <xsl:template match="c"><code><xsl:apply-templates/></code></xsl:template>
 <xsl:template match="em"><em><xsl:apply-templates/></em></xsl:template>
 <xsl:template match="b"><strong><xsl:apply-templates/></strong></xsl:template>
@@ -441,6 +443,7 @@
 <xsl:template match="ol"><ol><xsl:apply-templates/></ol></xsl:template>
 <xsl:template match="li"><li><xsl:apply-templates/></li></xsl:template>
 <xsl:template match="br"><br/></xsl:template>
+
 <xsl:template match="p">
 	<xsl:choose>
 		<xsl:when test="text()">
@@ -451,6 +454,7 @@
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
+
 <xsl:template match="para"><xsl:call-template name="p"/></xsl:template>
 <xsl:template match="section"><h2 class="general"><xsl:apply-templates/></h2></xsl:template>
 <xsl:template match="subsection"><h3 class="general"><xsl:apply-templates/></h3></xsl:template>

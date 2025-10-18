@@ -21,9 +21,9 @@ Changes (doesn't include all; see commits for everything):
 
 ### demo
 
-* [sample script with original style](https://yugecin.github.io/pawndocimproved/report1.xml)
-* [sample script with improved style](https://yugecin.github.io/pawndocimproved/report2.xml)
-* [docs of complete SA-MP PAWN API](https://basdon.github.io/documented-samp-pawn-api/main.xml)
+* [sample script with original style](https://yugecin.github.io/pawndocimproved/original.xml)
+* [sample script with improved style](https://yugecin.github.io/pawndocimproved/improved.xml)
+* [docs of complete SA-MP PAWN API in improved style](https://basdon.github.io/documented-samp-pawn-api/main.xml)
 
 ### howto
 

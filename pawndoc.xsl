@@ -25,6 +25,7 @@
 	TABLE { BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; WHITE-SPACE: nowrap }
 	TABLE.param { BACKGROUND-COLOR: #ddeeff; WHITE-SPACE: wrap }
 	TABLE.transition { BACKGROUND-COLOR: #ddeeff; }
+	TBODY.monospace { FONT-FAMILY: monospace }
 	TD { BACKGROUND-COLOR: #ddeeff; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; MARGIN: 2px; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; PADDING-TOP: 2px; TEXT-ALIGN: left; VERTICAL-ALIGN: top }
 	TD.header { BACKGROUND-COLOR: transparent; FONT-WEIGHT: bold; COLOR: #4e4887; WIDTH: 3.3em; PADDING-LEFT: 0px; MARGIN-BOTTOM: 0.5em }
 	TD.inline { BACKGROUND-COLOR: transparent }
@@ -451,5 +452,17 @@
 <xsl:template match="section"><h2 class="general"><xsl:apply-templates/></h2></xsl:template>
 
 <xsl:template match="subsection"><h3 class="general"><xsl:apply-templates/></h3></xsl:template>
+
+<xsl:template match="table"><table><xsl:apply-templates/></table></xsl:template>
+<xsl:template match="thead"><thead><xsl:apply-templates/></thead></xsl:template>
+<xsl:template match="tbody">
+	<tbody>
+		<xsl:attribute name="class"><xsl:value-of select="@class"/></xsl:attribute>
+		<xsl:apply-templates/>
+	</tbody>
+</xsl:template>
+<xsl:template match="tr"><tr><xsl:apply-templates/></tr></xsl:template>
+<xsl:template match="th"><th><xsl:apply-templates/></th></xsl:template>
+<xsl:template match="td"><td><xsl:apply-templates/></td></xsl:template>
 
 </xsl:stylesheet>

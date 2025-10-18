@@ -32,7 +32,7 @@
 	TD.param { FONT-WEIGHT: bold; FONT-STYLE: italic; PADDING-RIGHT: 20px; }
 	TD.transition { PADDING-RIGHT: 10px; }
 	TH { BACKGROUND-COLOR: #336699; COLOR: #ddeeff; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; MARGIN: 2px; PADDING-BOTTOM: 2px; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; PADDING-TOP: 2px; TEXT-ALIGN: left }
-	UL { MARGIN-LEFT: 4em; PADDING-LEFT: 0; }
+	UL, OL { MARGIN-LEFT: 3em; PADDING-LEFT: 0; }
 	LI.referrer { DISPLAY: inline-block; PADDING-RIGHT: 8px }
 	LI.dependency { DISPLAY: inline-block; PADDING-RIGHT: 8px }
 	LI.seealso { DISPLAY: inline-block; PADDING-RIGHT: 8px }

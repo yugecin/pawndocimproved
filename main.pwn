@@ -56,15 +56,19 @@ bool:func(p) <auto2:one>
 }
 /**
 * <summary>
-*   func
-*   <p/>
-*   it's func
-*   <p/>
-*   example using <paramref name="p" />
+*   func, and now a word after two line breaks:
+*
+*   word. this one will end with a &lt;p/&gt;<p/>
+*   this is the line after that &lt;p/&gt;, and this one will end with a &lt;br/&gt;<br/>
+*   line after brrr
+*   <p>this line is completely wrapped in p tag</p>
+*   example using paramref:<paramref name="p" />
+*   and a code block:
 *   <code>
 *     blah blah
 *     secondline
 *   </code>
+*   [1]: also support for superscript<sup>[1]</sup>
 * </summary>
 *
 * <param name="p">

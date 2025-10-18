@@ -18,7 +18,7 @@
 	A:visited { COLOR: #4e4887 }
 	A:active { COLOR: #f16043 }
 	A:hover { COLOR: #f16043 }
-	DIV.p, P.syntax, TABLE, PRE, UL, OL { MARGIN: 0.5em 0 }
+	DIV.p, DIV.p>p, P.syntax, TABLE, PRE, UL, OL { MARGIN: 0.5em 0 }
 	DIV.p, P.syntax, TABLE.param, TABLE.transition { MARGIN-LEFT: 4em }
 	DIV.para-margin { MARGIN-BOTTOM: 0.5em }
 	P.syntax { FONT-WEIGHT: bold }
@@ -136,7 +136,7 @@
 		<li><strong>(3)</strong> If this doesn't work, use <code>2</code>. (what?)</li>
 		<li><strong>(4)</strong> Only detected when JOYPAD configuration is selected.</li>
 	</ul>
-	<p><a href="#">Top</a></p>
+	<p><small><a href="#">top</a></small></p>
 </BODY>
 </HTML>
 </xsl:template>
@@ -319,11 +319,11 @@
 			<xsl:call-template name="seealso-section"/>
 		</xsl:when>
 	</xsl:choose>
-	<p><a href="#">Top</a></p>
+	<p><small><a href="#">top</a></small></p>
 </xsl:template>
 
 <xsl:template match="summary">
-	<p><xsl:apply-templates/></p>
+	<div class="p"><xsl:apply-templates/></div>
 </xsl:template>
 
 <xsl:template match="param">
@@ -433,6 +433,8 @@
 		<xsl:apply-templates/>
 	</a>
 </xsl:template>
+
+<xsl:template match="sup"><sup><xsl:apply-templates/></sup></xsl:template>
 <xsl:template match="c"><code><xsl:apply-templates/></code></xsl:template>
 <xsl:template match="em"><em><xsl:apply-templates/></em></xsl:template>
 <xsl:template match="b"><strong><xsl:apply-templates/></strong></xsl:template>
@@ -440,6 +442,8 @@
 <xsl:template match="ul"><ul><xsl:apply-templates/></ul></xsl:template>
 <xsl:template match="ol"><ol><xsl:apply-templates/></ol></xsl:template>
 <xsl:template match="li"><li><xsl:apply-templates/></li></xsl:template>
+<xsl:template match="br"><br/></xsl:template>
+
 <xsl:template match="p">
 	<xsl:choose>
 		<xsl:when test="text()">
@@ -450,6 +454,7 @@
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
+
 <xsl:template match="para"><xsl:call-template name="p"/></xsl:template>
 <xsl:template match="section"><h2 class="general"><xsl:apply-templates/></h2></xsl:template>
 <xsl:template match="subsection"><h3 class="general"><xsl:apply-templates/></h3></xsl:template>

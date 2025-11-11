@@ -88,9 +88,10 @@
 		<xsl:with-param name="type" select="'M:'" />
 	</xsl:call-template>
 	<div class="index">
-		<h2>Appendices (1)</h2>
+		<h2>Appendices (2)</h2>
 		<ul>
 			<li><a href="#Appendix_A_Keys">Appendix A: Table of Keys</a></li>
+			<li><a href="#Appendix_B_Vehicle_Damage_Status">Appendix B: Vehicle Damage Status</a></li>
 		</ul>
 	</div>
 	<xsl:apply-templates select="doc/members/member[not(@name='F:__file' or @name='F:__date' or @name='F:__time')]"/>
@@ -138,6 +139,15 @@
 		<li><strong>(4)</strong> Only detected when JOYPAD configuration is selected.</li>
 	</ul>
 	<p><small><a href="#">top</a></small></p>
+	<xsl:call-template name="vehicle-damage-status"/>
+	<script>
+		// initially loading the page somehow doesn't jump to the anchor referenced in the
+		// url fragment (both on Firefox and Chromium), so do it manually:
+		window.addEventListener('DOMContentLoaded', () => {
+			const anchor = window[window.location.hash.substring(1)];
+			anchor instanceof HTMLElement &amp;&amp; anchor.scrollIntoView();
+		});
+	</script>
 </BODY>
 </HTML>
 </xsl:template>
@@ -470,5 +480,136 @@
 <xsl:template match="tr"><tr><xsl:apply-templates/></tr></xsl:template>
 <xsl:template match="th"><th><xsl:apply-templates/></th></xsl:template>
 <xsl:template match="td"><td><xsl:apply-templates/></td></xsl:template>
+
+<xsl:template name="vehicle-damage-status">
+	<xsl:call-template name="memberheader">
+		<xsl:with-param name="membertype" select="'appendix'"/>
+		<xsl:with-param name="membername" select="'Appendix B: Vehicle Damage Status'"/>
+		<xsl:with-param name="anchor" select="'Appendix_B_Vehicle_Damage_Status'"/>
+	</xsl:call-template>
+	<h3>Remarks</h3>
+	<div class="p">
+		<p>When using <a href="#UpdateVehicleDamageStatus">UpdateVehicleDamageStatus</a>, the server will internally store the damage status without any checks and send it to the clients, but the clients will only (partially) apply the damage status depending on the vehicle. This means setting values using <a href="#UpdateVehicleDamageStatus">UpdateVehicleDamageStatus</a> will be reported back when using <a href="#GetVehicleDamageStatus">GetVehicleDamageStatus</a> but they may not have any effect in players' clients. See tables and notes below for support.</p>
+		<p>The client usually keeps values that don't mean anything. For example, when setting the unused highest nibble of the panel state to <strong><code>7</code></strong> and the player damages the windshield, the panel value after the client reports the update would be <strong><code>0x70020000</code></strong>.</p>
+	</div>
+	<h3 id="vds_vehiclesupport">Vehicle support</h3>
+	<div class="p">
+		<table>
+			<thead><tr><th>Kind</th><th>Panels</th><th>Doors</th><th>Lights</th><th>Tires</th></tr></thead>
+			<tbody>
+				<tr><td>Automobile<sup><strong>(1)</strong></sup></td><td>x</td><td>x</td><td>x</td><td>x</td></tr>
+				<tr><td>Motorcycle</td><td></td><td></td><td></td><td>x</td></tr>
+				<tr><td>Heli</td><td></td><td></td><td></td><td></td></tr>
+				<tr><td>Boat</td><td></td><td></td><td></td><td></td></tr>
+				<tr><td>Plane<sup><strong>(2)</strong></sup></td><td>x</td><td>x</td><td>x<sup><strong>(3)</strong></sup></td><td></td></tr>
+				<tr><td>Bike</td><td></td><td></td><td></td><td></td></tr>
+				<tr><td>Train</td><td></td><td></td><td></td><td></td></tr>
+				<tr><td>Trailer</td><td></td><td></td><td></td><td></td></tr>
+			</tbody>
+		</table>
+		<p>
+			<strong>(1)</strong> following automobiles are excluded and do not sync damage at all: <strong>Dumper, Monster, Monster A, Monster B, Quadbike, Dune</strong>. All of these vehicles have bulletproof tires, except for the Quadbike. A player can shoot the tires of a Quadbike and they will be popped for the player driving the vehicle, but the tires will stay intact in the clients of all other players<br/>
+			<strong>(2)</strong> plane damage status can be set (with <a href="#UpdateVehicleDamageStatus">UpdateVehicleDamageStatus</a>), but clients will NOT report if damage changes. This means <a href="#OnVehicleDamageStatusUpdate">OnVehicleDamageStatusUpdate</a> will NOT be called when a player damages their plane's engine/aileron/... and this damage will NOT be synced to other clients.<br/>
+			<strong>(3)</strong> it is supported as in the client will apply it to the game vehicle, but it has no effect
+		</p>
+	</div>
+	<h3 id="vds_panels">Panel states</h3>
+	<div class="p">
+		<p>Each nibble contains the status of a different panel.</p>
+		<table>
+		  <thead><tr><th>Mask</th><th>Automobile usage</th><th>Plane usage</th></tr></thead>
+		  <tbody>
+		  <tr><td><strong><code>0x0000000F</code></strong></td><td>front left</td><td>left engine<sup><strong>(1)(2)</strong></sup></td></tr>
+		  <tr><td><strong><code>0x000000F0</code></strong></td><td>front right</td><td>right engine<sup><strong>(1)(2)</strong></sup></td></tr>
+		  <tr><td><strong><code>0x00000F00</code></strong></td><td>rear left</td><td>rudder</td></tr>
+		  <tr><td><strong><code>0x0000F000</code></strong></td><td>rear right</td><td>elevators<sup><strong>(3)</strong></sup></td></tr>
+		  <tr><td><strong><code>0x000F0000</code></strong></td><td>windshield</td><td>ailerons<sup><strong>(4)</strong></sup></td></tr>
+		  <tr><td><strong><code>0x00F00000</code></strong></td><td>front bumper</td><td>(unused)</td></tr>
+		  <tr><td><strong><code>0x0F000000</code></strong></td><td>rear bumber</td><td>(unused)</td></tr>
+		  <tr><td><strong><code>0xF0000000</code></strong></td><td>(unused)</td><td>(unused)</td></tr>
+		  </tbody>
+		</table>
+		<p>Individual nibble meaning:</p>
+		<ul>
+			<li><strong><code>0x1</code></strong> - is damaged</li>
+			<li><strong><code>0x2</code></strong> - is very damaged (panel hangs loosely)</li>
+			<li><strong><code>0x3</code></strong> - is removed<sup><strong>(5)(6)</strong></sup></li>
+		</ul>
+		<p>
+			<strong>(1)</strong> single-engine planes only use the left engine, setting the right engine status will have no effect<br/>
+			<strong>(2)</strong> jet engines cannot be damaged (Shamal, Hydra, AT-400, Andromada)<br/>
+			<strong>(3)</strong> if the plane has two separate elevators, this only damages the right elevator (but it will repair both when setting it to 0)<br/>
+			<strong>(4)</strong> this only damages the right aileron, but setting it to 0 repairs both left and right<br/>
+			<strong>(5)</strong> plane panels do not get removed, they have another gradation of damaged<br/>
+			<strong>(6)</strong> if this is a plane engine it will produce barely any thrust and most of the time even reverse thrust
+		</p>
+	</div>
+	<h3 id="vds_doors">Door states</h3>
+	<div class="p">
+		<p>Each byte contains the status of a different door.</p>
+		<table>
+			<thead><tr><th>Mask</th><th>Automobile usage</th><th>Plane usage</th></tr></thead>
+			<tbody>
+				<tr><td><strong><code>0x000000FF</code></strong></td><td>hood</td><td>rudder<sup><strong>(1)</strong></sup></td></tr>
+				<tr><td><strong><code>0x0000FF00</code></strong></td><td>trunk</td><td>left elevator<sup><strong>(1)(2)</strong></sup></td></tr>
+				<tr><td><strong><code>0x00FF0000</code></strong></td><td>drivers door</td><td>pilot door<sup><strong>(3)</strong></sup></td></tr>
+				<tr><td><strong><code>0xFF000000</code></strong></td><td>co-drivers door</td><td>co-pilot door</td></tr>
+			</tbody>
+		</table>
+		<p>The game holds state for 6 doors: hood, trunk, 2 front doors, 2 back doors. It's not possible to get or set the state of the back doors, their states are also not synced between clients.</p>
+		<p>Individual byte meaning:</p>
+		<ul>
+			<li><strong><code>0x1</code></strong> - is opened<sup><strong>(4)(5)</strong></sup></li>
+			<li><strong><code>0x2</code></strong> - is damaged<sup><strong>(6)</strong></sup></li>
+			<li><strong><code>0x4</code></strong> - is removed</li>
+		</ul>
+		<p>
+			<strong>(1)</strong> only value <strong><code>0x4</code></strong> has an effect: it will spawn a flying part (but the rudder/elevator will not actually be removed nor functionally damaged)<br/>
+			<strong>(2)</strong> only applies to Stuntplane, Shamal, Hydra, Nevada, AT-400, Andromada<br/>
+			<strong>(3)</strong> setting the pilot door to <strong><code>0</code></strong> creates a 'ghost door' on some models, see <a href="#vds_ghostdoor">Plane ghost doors</a> below<br/>
+			<strong>(4)</strong> extra plane passenger doors (for Beagle, Dodo, Skimmer) don't open<br/>
+			<strong>(5)</strong> opening the driver's door will result in the drive immediately closing the door again<br/>
+			<strong>(6)</strong> plane doors do not have damaged models, so these look like undamaged doors
+		</p>
+	</div>
+	<h3 id="vds_lights">Light states</h3>
+	<div class="p">
+		<table>
+		  <thead><tr><th>Mask</th><th>Automobile/Motorcycle usage</th></tr></thead>
+		  <tbody>
+		  <tr><td><strong><code>0x01</code></strong></td><td>front left broken</td></tr>
+		  <tr><td><strong><code>0x04</code></strong></td><td>front right broken</td></tr>
+		  <tr><td><strong><code>0x40</code></strong></td><td>rear both broken</td></tr>
+		  </tbody>
+		</table>
+	</div>
+	<h3 id="vds_tires">Tire states</h3>
+	<div class="p">
+		<table>
+		  <thead><tr><th>Mask</th><th>Automobile/Motorcycle usage</th></tr></thead>
+		  <tbody>
+		  <tr><td><strong><code>0x1</code></strong></td><td>rear right popped</td></tr>
+		  <tr><td><strong><code>0x2</code></strong></td><td>front right popped</td></tr>
+		  <tr><td><strong><code>0x4</code></strong></td><td>rear left popped</td></tr>
+		  <tr><td><strong><code>0x8</code></strong></td><td>front left popped</td></tr>
+		  </tbody>
+		</table>
+	</div>
+<h3 id="vds_ghostdoor">Plane ghost doors</h3>
+	<div class="p">
+		<p>Fixing the damage of a <strong>Rustler, Stuntplane, Shamal, Hydra, Nevada</strong> (unexpectedly not for the Cropduster) by doing <code>UpdateVehicleDamageStatus(vehicleid, 0, 0, 0, 0)</code> will cause a 'ghost door' effect: the pilot's door will show undamaged but the door will not open while the player does their enter/exit animation. To fix this, set the value of the pilot's door to <strong><code>0x2</code></strong> (damaged). The door will not show as damaged as there is no damaged model for them, but this will fix the enter/exit animation.</p>
+		<p>This should also be done after calling <a href="#RepairVehicle">RepairVehicle</a>, as that internally works by using <a href="#UpdateVehicleDamageStatus">UpdateVehicleDamageStatus</a>. Example fix:</p>
+		<pre>RepairVehicle(vehicleid);
+switch(GetVehicleModel(vehicleid)) {
+case 476: // Rustler
+case 513: // Stuntplane
+case 519: // Shamal
+case 520: // Hydra
+case 553: // Nevada
+	UpdateVehicleDamageStatus(vehicleid, 0, 0x20000, 0, 0);
+}</pre>
+	</div>
+	<p><small><a href="#">top</a></small></p>
+</xsl:template>
 
 </xsl:stylesheet>

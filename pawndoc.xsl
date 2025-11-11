@@ -138,6 +138,14 @@
 		<li><strong>(4)</strong> Only detected when JOYPAD configuration is selected.</li>
 	</ul>
 	<p><small><a href="#">top</a></small></p>
+	<script>
+		// initially loading the page somehow doesn't jump to the anchor referenced in the
+		// url fragment (both on Firefox and Chromium), so do it manually:
+		window.addEventListener('DOMContentLoaded', () => {
+			const anchor = window[window.location.hash.substring(1)];
+			anchor instanceof HTMLElement &amp;&amp; anchor.scrollIntoView();
+		});
+	</script>
 </BODY>
 </HTML>
 </xsl:template>

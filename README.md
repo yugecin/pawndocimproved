@@ -1,5 +1,7 @@
 
-The 'improvements' are mainly some fixes, some style changes and adding SA-MP specific links and appendices.
+The 'improvements' are some fixes, some style changes, and adding SA-MP specific links and appendices.
+
+You might also be interested in [documented-samp-pawn-api](https://github.com/basdon/documented-samp-pawn-api), which are the default SA-MP include files but with documentation added.
 
 ## pawndocimproved
 
@@ -9,6 +11,7 @@ Changes (doesn't include all; see commits for everything):
 * more uniform style, larger fontsize
 * member types each have a different color
 * fixed titles showing for empty properties in firefox and chromium
+* fixed document not scrolling to anchor on initial page load with url fragment
 * add generated index table at the top
 * element names are now links that link to their own anchor
 * add link to 'top' at the end of every member section
@@ -16,7 +19,7 @@ Changes (doesn't include all; see commits for everything):
 * fix invalid html nesting (most text was inside `p` tags, but that doesn't allow `<ul>` `<ol>` `<pre>` as children)
 * support for `<b>` `<strong>` `<a>` `table/thead/tbody/tr/th/td` `<br>` `<sup>` tags in documentation
 * ignore `__file __date __time` members
-* added table of keys appendix for SA-MP's key definitions
+* added some SA-MP specific appendices (table of keys, damage status info, ...)
 * allow freeform text in `<seealso>` docs, as the PAWN language guide mentions it can be used like that
 
 ### demo
@@ -32,7 +35,3 @@ See the PAWN language guide page 52: _A tutorial introduction - Documentation co
 Use the `-rfilename` PAWN compiler option to generate a report of your code in XML format.
 
 The XML report generates with an absolute link to the `pawndoc.xsl` stylesheet (`href` attribute of `xml-stylesheet` tag) located in the pawno xml directory. Either replace that file with the version of this repository, or change the href value in the generated XML report file after it is generated. You could also replace the href with `https://raw.githubusercontent.com/yugecin/pawndocimproved/master/pawndoc.xsl`, but this only works in IE and Firefox,  chromium does not allow cross domain resources.
-
----
-
-you might also be interested in [documented-samp-pawn-api](https://github.com/basdon/documented-samp-pawn-api)

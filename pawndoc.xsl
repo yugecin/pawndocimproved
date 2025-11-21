@@ -494,6 +494,7 @@
 	</div>
 	<h3 id="vds_vehiclesupport">Vehicle support</h3>
 	<div class="p">
+		<p>Unsupported damage in the table below also means the damage will not be synced between clients.</p>
 		<table>
 			<thead><tr><th>Kind</th><th>Panels</th><th>Doors</th><th>Lights</th><th>Tires</th></tr></thead>
 			<tbody>

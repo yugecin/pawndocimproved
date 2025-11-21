@@ -90,15 +90,15 @@
 	<div class="index">
 		<h2>Appendices (2)</h2>
 		<ul>
-			<li><a href="#Appendix_A_Keys">Appendix A: Table of Keys</a></li>
-			<li><a href="#Appendix_B_Vehicle_Damage_Status">Appendix B: Vehicle Damage Status</a></li>
+			<li><a href="#Appendix_Keys">Appendix A: Table of Keys</a></li>
+			<li><a href="#Appendix_Vehicle_Damage_Status">Appendix B: Vehicle Damage Status</a></li>
 		</ul>
 	</div>
 	<xsl:apply-templates select="doc/members/member[not(@name='F:__file' or @name='F:__date' or @name='F:__time')]"/>
 	<xsl:call-template name="memberheader">
 		<xsl:with-param name="membertype" select="'appendix'"/>
 		<xsl:with-param name="membername" select="'Appendix A: Table of keys'"/>
-		<xsl:with-param name="anchor" select="'Appendix_A_Keys'"/>
+		<xsl:with-param name="anchor" select="'Appendix_Keys'"/>
 	</xsl:call-template>
 	<table>
 		<thead>
@@ -485,15 +485,16 @@
 	<xsl:call-template name="memberheader">
 		<xsl:with-param name="membertype" select="'appendix'"/>
 		<xsl:with-param name="membername" select="'Appendix B: Vehicle Damage Status'"/>
-		<xsl:with-param name="anchor" select="'Appendix_B_Vehicle_Damage_Status'"/>
+		<xsl:with-param name="anchor" select="'Appendix_Vehicle_Damage_Status'"/>
 	</xsl:call-template>
 	<h3>Remarks</h3>
 	<div class="p">
 		<p>When using <a href="#UpdateVehicleDamageStatus">UpdateVehicleDamageStatus</a>, the server will internally store the damage status without any checks and send it to the clients, but the clients will only (partially) apply the damage status depending on the vehicle. This means setting values using <a href="#UpdateVehicleDamageStatus">UpdateVehicleDamageStatus</a> will be reported back when using <a href="#GetVehicleDamageStatus">GetVehicleDamageStatus</a> but they may not have any effect in players' clients. See tables and notes below for support.</p>
 		<p>The client usually keeps values that don't mean anything. For example, when setting the unused highest nibble of the panel state to <strong><code>7</code></strong> and the player damages the windshield, the panel value after the client reports the update would be <strong><code>0x70020000</code></strong>.</p>
 	</div>
-	<h3 id="vds_vehiclesupport">Vehicle support</h3>
+	<h3 id="Appendix_Vehicle_Damage_Status_vehiclesupport">Vehicle support</h3>
 	<div class="p">
+		<p>Unsupported damage in the table below also means the damage will not be synced between clients.</p>
 		<table>
 			<thead><tr><th>Kind</th><th>Panels</th><th>Doors</th><th>Lights</th><th>Tires</th></tr></thead>
 			<tbody>
@@ -513,7 +514,7 @@
 			<strong>(3)</strong> it is supported as in the client will apply it to the game vehicle, but it has no effect
 		</p>
 	</div>
-	<h3 id="vds_panels">Panel states</h3>
+	<h3 id="Appendix_Vehicle_Damage_Status_panelstates">Panel states</h3>
 	<div class="p">
 		<p>Each nibble contains the status of a different panel.</p>
 		<table>
@@ -544,7 +545,7 @@
 			<strong>(6)</strong> if this is a plane engine it will produce barely any thrust and most of the time even reverse thrust
 		</p>
 	</div>
-	<h3 id="vds_doors">Door states</h3>
+	<h3 id="Appendix_Vehicle_Damage_Status_doorstates">Door states</h3>
 	<div class="p">
 		<p>Each byte contains the status of a different door.</p>
 		<table>
@@ -566,13 +567,13 @@
 		<p>
 			<strong>(1)</strong> only value <strong><code>0x4</code></strong> has an effect: it will spawn a flying part (but the rudder/elevator will not actually be removed nor functionally damaged)<br/>
 			<strong>(2)</strong> only applies to Stuntplane, Shamal, Hydra, Nevada, AT-400, Andromada<br/>
-			<strong>(3)</strong> setting the pilot door to <strong><code>0</code></strong> creates a 'ghost door' on some models, see <a href="#vds_ghostdoor">Plane ghost doors</a> below<br/>
+			<strong>(3)</strong> setting the pilot door to <strong><code>0</code></strong> creates a 'ghost door' on some models, see <a href="#Appendix_Vehicle_Damage_Status_planeghostdoors">Plane ghost doors</a> below<br/>
 			<strong>(4)</strong> extra plane passenger doors (for Beagle, Dodo, Skimmer) don't open<br/>
 			<strong>(5)</strong> opening the driver's door will result in the drive immediately closing the door again<br/>
 			<strong>(6)</strong> plane doors do not have damaged models, so these look like undamaged doors
 		</p>
 	</div>
-	<h3 id="vds_lights">Light states</h3>
+	<h3 id="Appendix_Vehicle_Damage_Status_lightstates">Light states</h3>
 	<div class="p">
 		<table>
 		  <thead><tr><th>Mask</th><th>Automobile/Motorcycle usage</th></tr></thead>
@@ -583,7 +584,7 @@
 		  </tbody>
 		</table>
 	</div>
-	<h3 id="vds_tires">Tire states</h3>
+	<h3 id="Appendix_Vehicle_Damage_Status_tirestates">Tire states</h3>
 	<div class="p">
 		<table>
 		  <thead><tr><th>Mask</th><th>Automobile/Motorcycle usage</th></tr></thead>
@@ -595,7 +596,7 @@
 		  </tbody>
 		</table>
 	</div>
-<h3 id="vds_ghostdoor">Plane ghost doors</h3>
+<h3 id="Appendix_Vehicle_Damage_Status_planeghostdoors">Plane ghost doors</h3>
 	<div class="p">
 		<p>Fixing the damage of a <strong>Rustler, Stuntplane, Shamal, Hydra, Nevada</strong> (unexpectedly not for the Cropduster) by doing <code>UpdateVehicleDamageStatus(vehicleid, 0, 0, 0, 0)</code> will cause a 'ghost door' effect: the pilot's door will show undamaged but the door will not open while the player does their enter/exit animation. To fix this, set the value of the pilot's door to <strong><code>0x2</code></strong> (damaged). The door will not show as damaged as there is no damaged model for them, but this will fix the enter/exit animation.</p>
 		<p>This should also be done after calling <a href="#RepairVehicle">RepairVehicle</a>, as that internally works by using <a href="#UpdateVehicleDamageStatus">UpdateVehicleDamageStatus</a>. Example fix:</p>

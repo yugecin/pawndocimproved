@@ -495,6 +495,8 @@
 	<div class="p">
 		<p>When using <a href="#UpdateVehicleDamageStatus">UpdateVehicleDamageStatus</a>, the server will internally store the damage status without any checks and send it to the clients, but the clients will only (partially) apply the damage status depending on the vehicle. This means setting values using <a href="#UpdateVehicleDamageStatus">UpdateVehicleDamageStatus</a> will be reported back when using <a href="#GetVehicleDamageStatus">GetVehicleDamageStatus</a> but they may not have any effect in players' clients. See tables and notes below for support.</p>
 		<p>The client usually keeps values that don't mean anything. For example, when setting the unused highest nibble of the panel state to <strong><code>7</code></strong> and the player damages the windshield, the panel value after the client reports the update would be <strong><code>0x70020000</code></strong>.</p>
+		<p>The client has two distinct ways of handling damage updates, depending on if all of panels,doors,lights are 0 or not (tires do not apply here because those are handled separately). If all values are 0, a game function is called that visually fixes the vehicle. If not all values are 0, a game function is called that applies visual damage. This may create weird side-effects when putting values back to 0 while not all values are 0. For example, setting a single panel state to 0 might remove dents in the panel but can still leave it hanging loosely. This is because only the function that fixes the vehicle will completely reset the visual damage.</p>
+		<p>Some planes have an additional quirk when putting all of panels,doors,lights to 0 because the client calls a game function to visually fix an automobile, which is not supposed to be used on planes. This results in 'ghost door' effects on some planes, see <a href="#Appendix_Vehicle_Damage_Status_planeghostdoors">Plane ghost doors</a> on how to deal with this.</p>
 	</div>
 	<h3 id="Appendix_Vehicle_Damage_Status_vehiclesupport">Vehicle support</h3>
 	<div class="p">
@@ -528,7 +530,7 @@
 		  <tr><td><strong><code>0x000000F0</code></strong></td><td>front right</td><td>right engine<sup><strong>(1)(2)</strong></sup></td></tr>
 		  <tr><td><strong><code>0x00000F00</code></strong></td><td>rear left</td><td>rudder</td></tr>
 		  <tr><td><strong><code>0x0000F000</code></strong></td><td>rear right</td><td>elevators<sup><strong>(3)</strong></sup></td></tr>
-		  <tr><td><strong><code>0x000F0000</code></strong></td><td>windshield</td><td>ailerons<sup><strong>(4)</strong></sup></td></tr>
+		  <tr><td><strong><code>0x000F0000</code></strong></td><td>windshield</td><td>ailerons<sup><strong>(4)(5)</strong></sup></td></tr>
 		  <tr><td><strong><code>0x00F00000</code></strong></td><td>front bumper</td><td>(unused)</td></tr>
 		  <tr><td><strong><code>0x0F000000</code></strong></td><td>rear bumber</td><td>(unused)</td></tr>
 		  <tr><td><strong><code>0xF0000000</code></strong></td><td>(unused)</td><td>(unused)</td></tr>
@@ -538,15 +540,16 @@
 		<ul>
 			<li><strong><code>0x1</code></strong> - is damaged</li>
 			<li><strong><code>0x2</code></strong> - is very damaged (panel hangs loosely)</li>
-			<li><strong><code>0x3</code></strong> - is removed<sup><strong>(5)(6)</strong></sup></li>
+			<li><strong><code>0x3</code></strong> - is removed<sup><strong>(6)(7)</strong></sup></li>
 		</ul>
 		<p>
 			<strong>(1)</strong> single-engine planes only use the left engine, setting the right engine status will have no effect<br/>
 			<strong>(2)</strong> jet engines cannot be damaged (Shamal, Hydra, AT-400, Andromada)<br/>
 			<strong>(3)</strong> if the plane has two separate elevators, this only damages the right elevator (but it will repair both when setting it to 0)<br/>
 			<strong>(4)</strong> this only damages the right aileron, but setting it to 0 repairs both left and right<br/>
-			<strong>(5)</strong> plane panels do not get removed, they have another gradation of damaged<br/>
-			<strong>(6)</strong> if this is a plane engine it will produce barely any thrust and most of the time even reverse thrust
+			<strong>(5)</strong> setting this back to 0 while not all of panels,doors,lights are set to 0 will functionally repair the ailerons (fixes the handling of the plane), but the ailerons may still look like they are damaged or slightly loose<br/>
+			<strong>(6)</strong> plane panels do not get removed, they have another gradation of damaged<br/>
+			<strong>(7)</strong> if this is a plane engine it will produce barely any thrust and most of the time even reverse thrust
 		</p>
 	</div>
 	<h3 id="Appendix_Vehicle_Damage_Status_doorstates">Door states</h3>
@@ -571,9 +574,9 @@
 		<p>
 			<strong>(1)</strong> only value <strong><code>0x4</code></strong> has an effect: it will spawn a flying part (but the rudder/elevator will not actually be removed nor functionally damaged)<br/>
 			<strong>(2)</strong> only applies to Stuntplane, Shamal, Hydra, Nevada, AT-400, Andromada<br/>
-			<strong>(3)</strong> setting the pilot door to <strong><code>0</code></strong> creates a 'ghost door' on some models, see <a href="#Appendix_Vehicle_Damage_Status_planeghostdoors">Plane ghost doors</a> below<br/>
+			<strong>(3)</strong> pilot doors can have a 'ghost door' effect on some models when fixing all damage, see <a href="#Appendix_Vehicle_Damage_Status_planeghostdoors">Plane ghost doors</a> below<br/>
 			<strong>(4)</strong> extra plane passenger doors (for Beagle, Dodo, Skimmer) don't open<br/>
-			<strong>(5)</strong> opening the driver's door will result in the drive immediately closing the door again<br/>
+			<strong>(5)</strong> opening the driver's door will result in the driver immediately closing the door again<br/>
 			<strong>(6)</strong> plane doors do not have damaged models, so these look like undamaged doors
 		</p>
 	</div>

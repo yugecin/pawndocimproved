@@ -461,26 +461,27 @@
 			<tr><td>0x140</td><td>KEY_LOOK_BEHIND</td><td>~k~~PED_LOOKBEHIND~</td><td>~k~~VEHICLE_LOOKBEHIND~</td><td>NUM1 / MMB</td><td>2</td></tr>
 			<tr><td>0x200</td><td>KEY_SUBMISSION</td><td>-</td><td>~k~~TOGGLE_SUBMISSIONS~</td><td>NUM1 / MMB</td><td>2 / NUMPAD +</td></tr>
 			<tr><td>0x400</td><td>KEY_WALK</td><td>~k~~SNEAK_ABOUT~</td><td>-</td><td>LALT</td><td>-</td></tr>
-			<tr><td>0x800</td><td>KEY_ANALOG_UP</td><td>-</td><td>~k~~VEHICLE_TURRETUP~</td><td>NUM8<sup>(4)</sup></td><td>NUM8</td></tr>
-			<tr><td>0x1000</td><td>KEY_ANALOG_DOWN</td><td>-</td><td>~k~~VEHICLE_TURRETDOWN~</td><td>NUM2<sup>(4)</sup></td><td>NUM2</td></tr>
+			<tr><td>0x800</td><td>KEY_ANALOG_UP</td><td>-</td><td>~k~~VEHICLE_TURRETUP~</td><td>NUM8<sup>(3)</sup></td><td>NUM8</td></tr>
+			<tr><td>0x1000</td><td>KEY_ANALOG_DOWN</td><td>-</td><td>~k~~VEHICLE_TURRETDOWN~</td><td>NUM2<sup>(3)</sup></td><td>NUM2</td></tr>
 			<tr><td>0x2000</td><td>KEY_ANALOG_LEFT</td><td>~k~~VEHICLE_LOOKLEFT~</td><td>~k~~VEHICLE_TURRETLEFT~</td><td>NUM4</td><td>NUM4</td></tr>
 			<tr><td>0x4000</td><td>KEY_ANALOG_RIGHT</td><td>~k~~VEHICLE_LOOKRIGHT~</td><td>~k~~VEHICLE_TURRETRIGHT~</td><td>NUM6</td><td>NUM6</td></tr>
-			<tr><td>0x10000</td><td>KEY_YES(2)</td><td>~k~~CONVERSATION_YES~</td><td>~k~~CONVERSATION_YES~</td><td>Y</td><td>Y</td></tr>
-			<tr><td>0x20000</td><td>KEY_NO(2)</td><td>~k~~CONVERSATION_NO~</td><td>~k~~CONVERSATION_NO~</td><td>N</td><td>N</td></tr>
-			<tr><td>0x40000<sup>(3)</sup></td><td>KEY_CTRL_BACK<sup>(1)</sup></td><td>~k~~GROUP_CONTROL_BWD~</td><td>~k~~GROUP_CONTROL_BWD~</td><td>H</td><td>H</td></tr>
+			<tr><td>0x10000</td><td>KEY_YES</td><td>~k~~CONVERSATION_YES~</td><td>~k~~CONVERSATION_YES~</td><td>Y</td><td>Y</td></tr>
+			<tr><td>0x20000</td><td>KEY_NO</td><td>~k~~CONVERSATION_NO~</td><td>~k~~CONVERSATION_NO~</td><td>N</td><td>N</td></tr>
+			<tr><td>0x40000</td><td>KEY_CTRL_BACK<sup>(1)</sup></td><td>~k~~GROUP_CONTROL_BWD~</td><td>~k~~GROUP_CONTROL_BWD~</td><td>H</td><td>H</td></tr>
 			<tr><td>-<sup>(2)</sup></td><td>-</td><td>~k~~GROUP_CONTROL_FWD~</td><td>~k~~GROUP_CONTROL_FWD~</td><td>G</td><td>G</td></tr>
-			<tr><td>[-128,-1]</td><td>KEY_UP</td><td>~k~~GO_FORWARD~</td><td>~k~~VEHICLE_STEERUP~</td><td>UP</td><td>UP</td></tr>
-			<tr><td>[1,128]</td><td>KEY_DOWN</td><td>~k~~GO_BACK~</td><td>~k~~VEHICLE_STEERDOWN~</td><td>DOWN</td><td>DOWN</td></tr>
-			<tr><td>[-128,-1]</td><td>KEY_LEFT</td><td>~k~~GO_LEFT~</td><td>~k~~VEHICLE_STEERLEFT~</td><td>LEFT</td><td>LEFT</td></tr>
-			<tr><td>[1,128]</td><td>KEY_RIGHT</td><td>~k~~GO_RIGHT~</td><td>~k~~VEHICLE_STEERRIGHT~</td><td>RIGHT</td><td>RIGHT</td></tr>
+			<tr><td>[-128,-1]<sup>(4)</sup></td><td>KEY_UP<sup>(5)</sup></td><td>~k~~GO_FORWARD~</td><td>~k~~VEHICLE_STEERUP~</td><td>UP</td><td>UP</td></tr>
+			<tr><td>[1,128]<sup>(4)</sup></td><td>KEY_DOWN<sup>(5)</sup></td><td>~k~~GO_BACK~</td><td>~k~~VEHICLE_STEERDOWN~</td><td>DOWN</td><td>DOWN</td></tr>
+			<tr><td>[-128,-1]<sup>(4)</sup></td><td>KEY_LEFT<sup>(5)</sup></td><td>~k~~GO_LEFT~</td><td>~k~~VEHICLE_STEERLEFT~</td><td>LEFT</td><td>LEFT</td></tr>
+			<tr><td>[1,128]<sup>(4)</sup></td><td>KEY_RIGHT<sup>(5)</sup></td><td>~k~~GO_RIGHT~</td><td>~k~~VEHICLE_STEERRIGHT~</td><td>RIGHT</td><td>RIGHT</td></tr>
 		</tbody>
 	</table>
 	<h3>Remarks</h3>
 	<ul>
 		<li><strong>(1)</strong> Since 0.3d. Cannot be detected while the player is in spectator mode.</li>
 		<li><strong>(2)</strong> Cannot be detected, <code>GROUP_CONTROL_FWD</code> is used to enter as passenger.</li>
-		<li><strong>(3)</strong> If this doesn't work, use <code>2</code>. (what?)</li>
-		<li><strong>(4)</strong> Only detected when JOYPAD configuration is selected.</li>
+		<li><strong>(3)</strong> Only detected when JOYPAD configuration is selected.</li>
+		<li><strong>(4)</strong> These values can be read from the <em>updown</em> and <em>leftright</em> parameters when calling <a href="#GetPlayerKeys">GetPlayerKeys</a>.</li>
+		<li><strong>(5)</strong> These macros only work with the most extreme value, players using analogue input can report any value within the given range.</li>
 	</ul>
 	<p><small><a href="#">top</a></small></p>
 </xsl:template>

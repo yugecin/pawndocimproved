@@ -94,7 +94,26 @@
 			<li><a href="#Appendix_Vehicle_Damage_Status">Appendix B: Vehicle Damage Status</a></li>
 		</ul>
 	</div>
-	<xsl:apply-templates select="doc/members/member[not(@name='F:__file' or @name='F:__date' or @name='F:__time')]"/>
+	<xsl:for-each select="doc/members/member[starts-with(@name,'T:')]">
+		<xsl:call-template name="member-entry">
+			<xsl:with-param name="membertype" select="'enumeration'"/>
+		</xsl:call-template>
+	</xsl:for-each>
+	<xsl:for-each select="doc/members/member[starts-with(@name,'C:')]">
+		<xsl:call-template name="member-entry">
+			<xsl:with-param name="membertype" select="'constant'"/>
+		</xsl:call-template>
+	</xsl:for-each>
+	<xsl:for-each select="doc/members/member[starts-with(@name,'F:')][not(@name='F:__file' or @name='F:__date' or @name='F:__time')]">
+		<xsl:call-template name="member-entry">
+			<xsl:with-param name="membertype" select="'variable'"/>
+		</xsl:call-template>
+	</xsl:for-each>
+	<xsl:for-each select="doc/members/member[starts-with(@name,'M:')]">
+		<xsl:call-template name="member-entry">
+			<xsl:with-param name="membertype" select="'function'"/>
+		</xsl:call-template>
+	</xsl:for-each>
 	<xsl:call-template name="table-of-keys"/>
 	<xsl:call-template name="vehicle-damage-status"/>
 	<script>
@@ -146,147 +165,80 @@
 	</h2>
 </xsl:template>
 
-<xsl:template match="member">
-	<xsl:choose>
-		<xsl:when test="substring(@name,1,2) = 'T:'">
-			<xsl:call-template name="memberheader">
-				<xsl:with-param name="membertype" select="'enumeration'"/>
-				<xsl:with-param name="membername" select="substring(@name,3)"/>
-				<xsl:with-param name="anchor" select="substring(@name,3)"/>
-			</xsl:call-template>
-			<xsl:apply-templates select="summary"/>
-			<xsl:if test="remarks or text()">
-				<h3>Remarks</h3>
-				<xsl:apply-templates select="remarks"/>
-				<xsl:if test="text()">
-					<div class="p"><xsl:apply-templates select="text()"/></div>
-				</xsl:if>
-			</xsl:if>
-			<xsl:if test="member">
-				<h3>Members</h3>
-				<blockquote>
-				<xsl:apply-templates select="member"/>
-				</blockquote>
-			</xsl:if>
-			<xsl:apply-templates select="example"/>
-			<xsl:if test="referrer">
-				<h3>Used by</h3>
-				<ul><xsl:apply-templates select="referrer"/></ul>
-			</xsl:if>
-			<xsl:if test="dependency">
-				<h3>Depends on</h3>
-				<ul><xsl:apply-templates select="dependency"/></ul>
-			</xsl:if>
-			<xsl:apply-templates select="location"/>
-			<xsl:call-template name="seealso-section"/>
-		</xsl:when>
-		<xsl:when test="substring(@name,1,2) = 'C:'">
-			<xsl:call-template name="memberheader">
-				<xsl:with-param name="membertype" select="'constant'"/>
-				<xsl:with-param name="membername" select="substring(@name,3)"/>
-				<xsl:with-param name="anchor" select="substring(@name,3)"/>
-			</xsl:call-template>
-			<xsl:apply-templates select="summary"/>
-			<h3>Value</h3>
-			<div class="p"><xsl:value-of select="@value"/></div>
-			<xsl:apply-templates select="tagname"/>
-			<xsl:apply-templates select="size"/>
-			<xsl:if test="remarks or text()">
-				<h3>Remarks</h3>
-				<xsl:apply-templates select="remarks"/>
-				<xsl:if test="text()">
-					<div class="p"><xsl:apply-templates select="text()"/></div>
-				</xsl:if>
-			</xsl:if>
-			<xsl:apply-templates select="example"/>
-			<xsl:if test="referrer">
-				<h3>Used by</h3>
-				<ul><xsl:apply-templates select="referrer"/></ul>
-			</xsl:if>
-			<xsl:if test="dependency">
-				<h3>Depends on</h3>
-				<ul><xsl:apply-templates select="dependency"/></ul>
-			</xsl:if>
-			<xsl:apply-templates select="location"/>
-			<xsl:call-template name="seealso-section"/>
-		</xsl:when>
-		<xsl:when test="substring(@name,1,2) = 'M:'">
-			<xsl:call-template name="memberheader">
-				<xsl:with-param name="membertype" select="'function'"/>
-				<xsl:with-param name="membername" select="substring(@name,3)"/>
-				<xsl:with-param name="anchor" select="substring(@name,3)"/>
-			</xsl:call-template>
-			<xsl:apply-templates select="summary"/>
-			<h3>Syntax</h3><p class="syntax"><xsl:value-of select="@syntax"/></p>
-			<xsl:if test="param">
-				<table class="param"><xsl:apply-templates select="param"/></table>
-			</xsl:if>
-			<xsl:apply-templates select="tagname"/>
-			<xsl:apply-templates select="returns"/>
-			<xsl:if test="remarks or text()">
-				<h3>Remarks</h3>
-				<xsl:apply-templates select="remarks"/>
-				<xsl:if test="text()">
-					<div class="p"><xsl:apply-templates select="text()"/></div>
-				</xsl:if>
-			</xsl:if>
-			<xsl:apply-templates select="example"/>
-			<xsl:if test="referrer">
-				<h3>Used by</h3>
-				<ul><xsl:apply-templates select="referrer"/></ul>
-			</xsl:if>
-			<xsl:if test="dependency">
-				<h3>Depends on</h3>
-				<ul><xsl:apply-templates select="dependency"/></ul>
-			</xsl:if>
-			<xsl:if test="attribute">
-				<h3>Attributes</h3>
-				<ul><xsl:apply-templates select="attribute"/></ul>
-			</xsl:if>
-			<xsl:apply-templates select="automaton"/>
-			<xsl:if test="transition">
-				<h3>Transition table</h3>
-				<table class="transition">
-					<tr><th>Source</th><th>Target</th><th>Condition</th></tr>
-					<xsl:apply-templates select="transition"/>
-				</table>
-			</xsl:if>
-			<xsl:apply-templates select="location"/>
-			<xsl:apply-templates select="stacksize"/>
-			<xsl:apply-templates select="codesize"/>
-			<xsl:call-template name="seealso-section"/>
-		</xsl:when>
-		<xsl:when test="substring(@name,1,2) = 'F:'">
-			<xsl:call-template name="memberheader">
-				<xsl:with-param name="membertype" select="'variable'"/>
-				<xsl:with-param name="membername" select="substring(@name,3)"/>
-				<xsl:with-param name="anchor" select="substring(@name,3)"/>
-			</xsl:call-template>
-			<xsl:apply-templates select="summary"/>
-			<xsl:if test="@syntax">
-				<h3>Syntax</h3><p class="syntax"><xsl:value-of select="@syntax"/></p>
-			</xsl:if>
-			<xsl:apply-templates select="tagname"/>
-			<xsl:if test="remarks or text()">
-				<h3>Remarks</h3>
-				<xsl:apply-templates select="remarks"/>
-				<xsl:if test="text()">
-					<div class="p"><xsl:apply-templates select="text()"/></div>
-				</xsl:if>
-			</xsl:if>
-			<xsl:apply-templates select="example"/>
-			<xsl:if test="referrer">
-				<h3>Used by</h3>
-				<ul><xsl:apply-templates select="referrer"/></ul>
-			</xsl:if>
-			<xsl:if test="dependency">
-				<h3>Depends on</h3>
-				<ul><xsl:apply-templates select="dependency"/></ul>
-			</xsl:if>
-			<xsl:apply-templates select="location"/>
-			<xsl:call-template name="seealso-section"/>
-		</xsl:when>
-	</xsl:choose>
+<xsl:template name="member-entry">
+	<xsl:param name="membertype"/>
+	<xsl:call-template name="memberheader">
+		<xsl:with-param name="membertype" select="$membertype"/>
+		<xsl:with-param name="membername" select="substring(@name,3)"/>
+		<xsl:with-param name="anchor" select="substring(@name,3)"/>
+	</xsl:call-template>
+	<xsl:apply-templates select="summary"/>
+	<xsl:if test="$membertype = 'constant'">
+		<h3>Value</h3>
+		<div class="p"><xsl:value-of select="@value"/></div>
+		<xsl:apply-templates select="tagname"/>
+		<xsl:apply-templates select="size"/>
+	</xsl:if>
+	<xsl:if test="$membertype = 'function'">
+		<h3>Syntax</h3><p class="syntax"><xsl:value-of select="@syntax"/></p>
+		<xsl:if test="param">
+			<table class="param"><xsl:apply-templates select="param"/></table>
+		</xsl:if>
+		<xsl:apply-templates select="tagname"/>
+		<xsl:apply-templates select="returns"/>
+	</xsl:if>
+	<xsl:if test="remarks or text()">
+		<h3>Remarks</h3>
+		<xsl:apply-templates select="remarks"/>
+		<xsl:if test="text()">
+			<div class="p"><xsl:apply-templates select="text()"/></div>
+		</xsl:if>
+	</xsl:if>
+	<xsl:if test="$membertype = 'enumeration' and member">
+		<h3>Members</h3>
+		<blockquote>
+			<xsl:for-each select="member">
+				<xsl:call-template name="member-entry">
+					<xsl:with-param name="membertype" select="'constant'"/>
+				</xsl:call-template>
+			</xsl:for-each>
+		</blockquote>
+	</xsl:if>
+	<xsl:apply-templates select="example"/>
+	<xsl:if test="referrer">
+		<h3>Used by</h3>
+		<ul><xsl:apply-templates select="referrer"/></ul>
+	</xsl:if>
+	<xsl:if test="dependency">
+		<h3>Depends on</h3>
+		<ul><xsl:apply-templates select="dependency"/></ul>
+	</xsl:if>
+	<xsl:if test="$membertype = 'function'">
+		<xsl:if test="attribute">
+			<h3>Attributes</h3>
+			<ul><xsl:apply-templates select="attribute"/></ul>
+		</xsl:if>
+		<xsl:apply-templates select="automaton"/>
+		<xsl:if test="transition">
+			<h3>Transition table</h3>
+			<table class="transition">
+				<tr><th>Source</th><th>Target</th><th>Condition</th></tr>
+				<xsl:apply-templates select="transition"/>
+			</table>
+		</xsl:if>
+	</xsl:if>
+	<xsl:apply-templates select="location"/>
+	<xsl:if test="$membertype = 'function'">
+		<xsl:apply-templates select="stacksize"/>
+		<xsl:apply-templates select="codesize"/>
+	</xsl:if>
+	<xsl:if test="seealso">
+		<h3>See Also</h3>
+		<xsl:if test="seealso[@name]">
+			<ul><xsl:apply-templates select="seealso[@name]"/></ul>
+		</xsl:if>
+		<xsl:apply-templates select="seealso[not(@name)]"/>
+	</xsl:if>
 	<p><small><a href="#">top</a></small></p>
 </xsl:template>
 
@@ -371,16 +323,6 @@
 
 <xsl:template match="code">
 	<pre><xsl:apply-templates/></pre>
-</xsl:template>
-
-<xsl:template name="seealso-section">
-	<xsl:if test="seealso">
-		<h3>See Also</h3>
-		<xsl:if test="seealso[@name]">
-			<ul><xsl:apply-templates select="seealso[@name]"/></ul>
-		</xsl:if>
-		<xsl:apply-templates select="seealso[not(@name)]"/>
-	</xsl:if>
 </xsl:template>
 
 <xsl:template match="seealso[@name]">

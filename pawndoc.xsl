@@ -505,11 +505,11 @@
 		<table>
 			<thead><tr><th>Kind</th><th>Panels</th><th>Doors</th><th>Lights</th><th>Tires</th></tr></thead>
 			<tbody>
-				<tr><td>Automobile<sup><strong>(1)</strong></sup></td><td>x</td><td>x</td><td>x</td><td>x</td></tr>
+				<tr><td>Automobile<sup>(1)</sup></td><td>x</td><td>x</td><td>x</td><td>x</td></tr>
 				<tr><td>Motorcycle</td><td></td><td></td><td></td><td>x</td></tr>
 				<tr><td>Heli</td><td></td><td></td><td></td><td></td></tr>
 				<tr><td>Boat</td><td></td><td></td><td></td><td></td></tr>
-				<tr><td>Plane<sup><strong>(2)</strong></sup></td><td>x</td><td>x</td><td>x<sup><strong>(3)</strong></sup></td><td></td></tr>
+				<tr><td>Plane<sup>(2)</sup></td><td>x</td><td>x</td><td>x<sup>(3)</sup></td><td></td></tr>
 				<tr><td>Bike</td><td></td><td></td><td></td><td></td></tr>
 				<tr><td>Train</td><td></td><td></td><td></td><td></td></tr>
 				<tr><td>Trailer</td><td></td><td></td><td></td><td></td></tr>
@@ -527,11 +527,11 @@
 		<table>
 		  <thead><tr><th>Mask</th><th>Automobile usage</th><th>Plane usage</th></tr></thead>
 		  <tbody>
-		  <tr><td><strong><code>0x0000000F</code></strong></td><td>front left</td><td>left engine<sup><strong>(1)(2)</strong></sup></td></tr>
-		  <tr><td><strong><code>0x000000F0</code></strong></td><td>front right</td><td>right engine<sup><strong>(1)(2)</strong></sup></td></tr>
+		  <tr><td><strong><code>0x0000000F</code></strong></td><td>front left</td><td>left engine<sup>(1)(2)</sup></td></tr>
+		  <tr><td><strong><code>0x000000F0</code></strong></td><td>front right</td><td>right engine<sup>(1)(2)</sup></td></tr>
 		  <tr><td><strong><code>0x00000F00</code></strong></td><td>rear left</td><td>rudder</td></tr>
-		  <tr><td><strong><code>0x0000F000</code></strong></td><td>rear right</td><td>elevators<sup><strong>(3)</strong></sup></td></tr>
-		  <tr><td><strong><code>0x000F0000</code></strong></td><td>windshield</td><td>ailerons<sup><strong>(4)(5)</strong></sup></td></tr>
+		  <tr><td><strong><code>0x0000F000</code></strong></td><td>rear right</td><td>elevators<sup>(3)</sup></td></tr>
+		  <tr><td><strong><code>0x000F0000</code></strong></td><td>windshield</td><td>ailerons<sup>(4)(5)</sup></td></tr>
 		  <tr><td><strong><code>0x00F00000</code></strong></td><td>front bumper</td><td>(unused)</td></tr>
 		  <tr><td><strong><code>0x0F000000</code></strong></td><td>rear bumber</td><td>(unused)</td></tr>
 		  <tr><td><strong><code>0xF0000000</code></strong></td><td>(unused)</td><td>(unused)</td></tr>
@@ -541,7 +541,7 @@
 		<ul>
 			<li><strong><code>0x1</code></strong> - is damaged</li>
 			<li><strong><code>0x2</code></strong> - is very damaged (panel hangs loosely)</li>
-			<li><strong><code>0x3</code></strong> - is removed<sup><strong>(6)(7)</strong></sup></li>
+			<li><strong><code>0x3</code></strong> - is removed<sup>(6)(7)</sup></li>
 		</ul>
 		<p>
 			<strong>(1)</strong> single-engine planes only use the left engine, setting the right engine status will have no effect<br/>
@@ -559,17 +559,17 @@
 		<table>
 			<thead><tr><th>Mask</th><th>Automobile usage</th><th>Plane usage</th></tr></thead>
 			<tbody>
-				<tr><td><strong><code>0x000000FF</code></strong></td><td>hood</td><td>rudder<sup><strong>(1)</strong></sup></td></tr>
-				<tr><td><strong><code>0x0000FF00</code></strong></td><td>trunk</td><td>left elevator<sup><strong>(1)(2)</strong></sup></td></tr>
-				<tr><td><strong><code>0x00FF0000</code></strong></td><td>drivers door</td><td>pilot door<sup><strong>(3)</strong></sup></td></tr>
+				<tr><td><strong><code>0x000000FF</code></strong></td><td>hood</td><td>rudder<sup>(1)</sup></td></tr>
+				<tr><td><strong><code>0x0000FF00</code></strong></td><td>trunk</td><td>left elevator<sup>(1)(2)</sup></td></tr>
+				<tr><td><strong><code>0x00FF0000</code></strong></td><td>drivers door</td><td>pilot door<sup>(3)</sup></td></tr>
 				<tr><td><strong><code>0xFF000000</code></strong></td><td>co-drivers door</td><td>co-pilot door</td></tr>
 			</tbody>
 		</table>
 		<p>The game holds state for 6 doors: hood, trunk, 2 front doors, 2 back doors. It's not possible to get or set the state of the back doors, their states are also not synced between clients.</p>
 		<p>Individual byte meaning:</p>
 		<ul>
-			<li><strong><code>0x1</code></strong> - is opened<sup><strong>(4)(5)</strong></sup></li>
-			<li><strong><code>0x2</code></strong> - is damaged<sup><strong>(6)</strong></sup></li>
+			<li><strong><code>0x1</code></strong> - is opened<sup>(4)(5)</sup></li>
+			<li><strong><code>0x2</code></strong> - is damaged<sup>(6)</sup></li>
 			<li><strong><code>0x4</code></strong> - is removed</li>
 		</ul>
 		<p>

@@ -1,3 +1,8 @@
+**COMPATIBILITY NOTICE**
+
+XSLT is being removed from the web platform (https://github.com/whatwg/html/issues/11523), so soon this will not work in Chrome/Firefox anymore :( I have no recommendations for alternatives at this moment.
+
+---
 
 The 'improvements' are some fixes, some style changes, and adding SA-MP specific links and appendices.
 

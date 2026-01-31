@@ -94,51 +94,27 @@
 			<li><a href="#Appendix_Vehicle_Damage_Status">Appendix B: Vehicle Damage Status</a></li>
 		</ul>
 	</div>
-	<xsl:apply-templates select="doc/members/member[not(@name='F:__file' or @name='F:__date' or @name='F:__time')]"/>
-	<xsl:call-template name="memberheader">
-		<xsl:with-param name="membertype" select="'appendix'"/>
-		<xsl:with-param name="membername" select="'Appendix A: Table of keys'"/>
-		<xsl:with-param name="anchor" select="'Appendix_Keys'"/>
-	</xsl:call-template>
-	<table>
-		<thead>
-			<tr><th>Value</th><th>Macro</th><th>On foot GXT</th><th>In vehicle GXT</th><th>On foot default</th><th>In vehicle default</th></tr>
-		</thead>
-		<tbody style="font-family:monospace">
-			<tr><td>0x1</td><td>KEY_ACTION</td><td>~k~~PED_ANSWER_PHONE~</td><td>~k~~VEHICLE_FIREWEAPON_ALT~</td><td>TAB</td><td>ALT GR / LCTRL / NUM0</td></tr>
-			<tr><td>0x2</td><td>KEY_CROUCH</td><td>~k~~PED_DUCK~</td><td>~k~~VEHICLE_HORN~</td><td>C</td><td>H / CAPSLOCK</td></tr>
-			<tr><td>0x4</td><td>KEY_FIRE</td><td>~k~~PED_FIREWEAPON~</td><td>~k~~VEHICLE_FIREWEAPON~</td><td>LCTRL / LMB</td><td>LALT</td></tr>
-			<tr><td>0x8</td><td>KEY_SPRINT</td><td>~k~~PED_SPRINT~</td><td>~k~~VEHICLE_ACCELERATE~</td><td>SPACE</td><td>W</td></tr>
-			<tr><td>0x10</td><td>KEY_SECONDARY_ATTACK</td><td>~k~~VEHICLE_ENTER_EXIT~</td><td>~k~~VEHICLE_ENTER_EXIT~</td><td>ENTER</td><td>ENTER</td></tr>
-			<tr><td>0x20</td><td>KEY_JUMP</td><td>~k~~PED_JUMPING~</td><td>~k~~VEHICLE_BRAKE~</td><td>LSHIFT</td><td>S</td></tr>
-			<tr><td>0x40</td><td>KEY_LOOK_RIGHT</td><td>-</td><td>~k~~VEHICLE_LOOKRIGHT~</td><td>-</td><td>E</td></tr>
-			<tr><td>0x80</td><td>KEY_HANDBRAKE/KEY_AIM</td><td>~k~~PED_LOCK_TARGET~</td><td>~k~~VEHICLE_HANDBRAKE~</td><td>RMB</td><td>SPACE</td></tr>
-			<tr><td>0x100</td><td>KEY_LOOK_LEFT</td><td>-</td><td>~k~~VEHICLE_LOOKLEFT~</td><td>-</td><td>Q</td></tr>
-			<tr><td>0x140</td><td>KEY_LOOK_BEHIND</td><td>~k~~PED_LOOKBEHIND~</td><td>~k~~VEHICLE_LOOKBEHIND~</td><td>NUM1 / MMB</td><td>2</td></tr>
-			<tr><td>0x200</td><td>KEY_SUBMISSION</td><td>-</td><td>~k~~TOGGLE_SUBMISSIONS~</td><td>NUM1 / MMB</td><td>2 / NUMPAD +</td></tr>
-			<tr><td>0x400</td><td>KEY_WALK</td><td>~k~~SNEAK_ABOUT~</td><td>-</td><td>LALT</td><td>-</td></tr>
-			<tr><td>0x800</td><td>KEY_ANALOG_UP</td><td>-</td><td>~k~~VEHICLE_TURRETUP~</td><td>NUM8<sup>(4)</sup></td><td>NUM8</td></tr>
-			<tr><td>0x1000</td><td>KEY_ANALOG_DOWN</td><td>-</td><td>~k~~VEHICLE_TURRETDOWN~</td><td>NUM2<sup>(4)</sup></td><td>NUM2</td></tr>
-			<tr><td>0x2000</td><td>KEY_ANALOG_LEFT</td><td>~k~~VEHICLE_LOOKLEFT~</td><td>~k~~VEHICLE_TURRETLEFT~</td><td>NUM4</td><td>NUM4</td></tr>
-			<tr><td>0x4000</td><td>KEY_ANALOG_RIGHT</td><td>~k~~VEHICLE_LOOKRIGHT~</td><td>~k~~VEHICLE_TURRETRIGHT~</td><td>NUM6</td><td>NUM6</td></tr>
-			<tr><td>0x10000</td><td>KEY_YES(2)</td><td>~k~~CONVERSATION_YES~</td><td>~k~~CONVERSATION_YES~</td><td>Y</td><td>Y</td></tr>
-			<tr><td>0x20000</td><td>KEY_NO(2)</td><td>~k~~CONVERSATION_NO~</td><td>~k~~CONVERSATION_NO~</td><td>N</td><td>N</td></tr>
-			<tr><td>0x40000<sup>(3)</sup></td><td>KEY_CTRL_BACK<sup>(1)</sup></td><td>~k~~GROUP_CONTROL_BWD~</td><td>~k~~GROUP_CONTROL_BWD~</td><td>H</td><td>H</td></tr>
-			<tr><td>-<sup>(2)</sup></td><td>-</td><td>~k~~GROUP_CONTROL_FWD~</td><td>~k~~GROUP_CONTROL_FWD~</td><td>G</td><td>G</td></tr>
-			<tr><td>[-128,-1]</td><td>KEY_UP</td><td>~k~~GO_FORWARD~</td><td>~k~~VEHICLE_STEERUP~</td><td>UP</td><td>UP</td></tr>
-			<tr><td>[1,128]</td><td>KEY_DOWN</td><td>~k~~GO_BACK~</td><td>~k~~VEHICLE_STEERDOWN~</td><td>DOWN</td><td>DOWN</td></tr>
-			<tr><td>[-128,-1]</td><td>KEY_LEFT</td><td>~k~~GO_LEFT~</td><td>~k~~VEHICLE_STEERLEFT~</td><td>LEFT</td><td>LEFT</td></tr>
-			<tr><td>[1,128]</td><td>KEY_RIGHT</td><td>~k~~GO_RIGHT~</td><td>~k~~VEHICLE_STEERRIGHT~</td><td>RIGHT</td><td>RIGHT</td></tr>
-		</tbody>
-	</table>
-	<h3>Remarks</h3>
-	<ul>
-		<li><strong>(1)</strong> Since 0.3d. Cannot be detected while the player is in spectator mode.</li>
-		<li><strong>(2)</strong> Cannot be detected, <code>GROUP_CONTROL_FWD</code> is used to enter as passenger.</li>
-		<li><strong>(3)</strong> If this doesn't work, use <code>2</code>. (what?)</li>
-		<li><strong>(4)</strong> Only detected when JOYPAD configuration is selected.</li>
-	</ul>
-	<p><small><a href="#">top</a></small></p>
+	<xsl:for-each select="doc/members/member[starts-with(@name,'T:')]">
+		<xsl:call-template name="member-entry">
+			<xsl:with-param name="membertype" select="'enumeration'"/>
+		</xsl:call-template>
+	</xsl:for-each>
+	<xsl:for-each select="doc/members/member[starts-with(@name,'C:')]">
+		<xsl:call-template name="member-entry">
+			<xsl:with-param name="membertype" select="'constant'"/>
+		</xsl:call-template>
+	</xsl:for-each>
+	<xsl:for-each select="doc/members/member[starts-with(@name,'F:')][not(@name='F:__file' or @name='F:__date' or @name='F:__time')]">
+		<xsl:call-template name="member-entry">
+			<xsl:with-param name="membertype" select="'variable'"/>
+		</xsl:call-template>
+	</xsl:for-each>
+	<xsl:for-each select="doc/members/member[starts-with(@name,'M:')]">
+		<xsl:call-template name="member-entry">
+			<xsl:with-param name="membertype" select="'function'"/>
+		</xsl:call-template>
+	</xsl:for-each>
+	<xsl:call-template name="table-of-keys"/>
 	<xsl:call-template name="vehicle-damage-status"/>
 	<script>
 		// initially loading the page somehow doesn't jump to the anchor referenced in the
@@ -189,147 +165,84 @@
 	</h2>
 </xsl:template>
 
-<xsl:template match="member">
-	<xsl:choose>
-		<xsl:when test="substring(@name,1,2) = 'T:'">
-			<xsl:call-template name="memberheader">
-				<xsl:with-param name="membertype" select="'enumeration'"/>
-				<xsl:with-param name="membername" select="substring(@name,3)"/>
-				<xsl:with-param name="anchor" select="substring(@name,3)"/>
-			</xsl:call-template>
-			<xsl:apply-templates select="summary"/>
-			<xsl:if test="remarks or text()">
-				<h3>Remarks</h3>
-				<xsl:apply-templates select="remarks"/>
-				<xsl:if test="text()">
-					<div class="p"><xsl:apply-templates select="text()"/></div>
-				</xsl:if>
-			</xsl:if>
-			<xsl:if test="member">
-				<h3>Members</h3>
-				<blockquote>
-				<xsl:apply-templates select="member"/>
-				</blockquote>
-			</xsl:if>
-			<xsl:apply-templates select="example"/>
-			<xsl:if test="referrer">
-				<h3>Used by</h3>
-				<ul><xsl:apply-templates select="referrer"/></ul>
-			</xsl:if>
-			<xsl:if test="dependency">
-				<h3>Depends on</h3>
-				<ul><xsl:apply-templates select="dependency"/></ul>
-			</xsl:if>
-			<xsl:apply-templates select="location"/>
-			<xsl:call-template name="seealso-section"/>
-		</xsl:when>
-		<xsl:when test="substring(@name,1,2) = 'C:'">
-			<xsl:call-template name="memberheader">
-				<xsl:with-param name="membertype" select="'constant'"/>
-				<xsl:with-param name="membername" select="substring(@name,3)"/>
-				<xsl:with-param name="anchor" select="substring(@name,3)"/>
-			</xsl:call-template>
-			<xsl:apply-templates select="summary"/>
-			<h3>Value</h3>
-			<div class="p"><xsl:value-of select="@value"/></div>
-			<xsl:apply-templates select="tagname"/>
-			<xsl:apply-templates select="size"/>
-			<xsl:if test="remarks or text()">
-				<h3>Remarks</h3>
-				<xsl:apply-templates select="remarks"/>
-				<xsl:if test="text()">
-					<div class="p"><xsl:apply-templates select="text()"/></div>
-				</xsl:if>
-			</xsl:if>
-			<xsl:apply-templates select="example"/>
-			<xsl:if test="referrer">
-				<h3>Used by</h3>
-				<ul><xsl:apply-templates select="referrer"/></ul>
-			</xsl:if>
-			<xsl:if test="dependency">
-				<h3>Depends on</h3>
-				<ul><xsl:apply-templates select="dependency"/></ul>
-			</xsl:if>
-			<xsl:apply-templates select="location"/>
-			<xsl:call-template name="seealso-section"/>
-		</xsl:when>
-		<xsl:when test="substring(@name,1,2) = 'M:'">
-			<xsl:call-template name="memberheader">
-				<xsl:with-param name="membertype" select="'function'"/>
-				<xsl:with-param name="membername" select="substring(@name,3)"/>
-				<xsl:with-param name="anchor" select="substring(@name,3)"/>
-			</xsl:call-template>
-			<xsl:apply-templates select="summary"/>
-			<h3>Syntax</h3><p class="syntax"><xsl:value-of select="@syntax"/></p>
-			<xsl:if test="param">
-				<table class="param"><xsl:apply-templates select="param"/></table>
-			</xsl:if>
-			<xsl:apply-templates select="tagname"/>
-			<xsl:apply-templates select="returns"/>
-			<xsl:if test="remarks or text()">
-				<h3>Remarks</h3>
-				<xsl:apply-templates select="remarks"/>
-				<xsl:if test="text()">
-					<div class="p"><xsl:apply-templates select="text()"/></div>
-				</xsl:if>
-			</xsl:if>
-			<xsl:apply-templates select="example"/>
-			<xsl:if test="referrer">
-				<h3>Used by</h3>
-				<ul><xsl:apply-templates select="referrer"/></ul>
-			</xsl:if>
-			<xsl:if test="dependency">
-				<h3>Depends on</h3>
-				<ul><xsl:apply-templates select="dependency"/></ul>
-			</xsl:if>
-			<xsl:if test="attribute">
-				<h3>Attributes</h3>
-				<ul><xsl:apply-templates select="attribute"/></ul>
-			</xsl:if>
-			<xsl:apply-templates select="automaton"/>
-			<xsl:if test="transition">
-				<h3>Transition table</h3>
-				<table class="transition">
-					<tr><th>Source</th><th>Target</th><th>Condition</th></tr>
-					<xsl:apply-templates select="transition"/>
-				</table>
-			</xsl:if>
-			<xsl:apply-templates select="location"/>
-			<xsl:apply-templates select="stacksize"/>
-			<xsl:apply-templates select="codesize"/>
-			<xsl:call-template name="seealso-section"/>
-		</xsl:when>
-		<xsl:when test="substring(@name,1,2) = 'F:'">
-			<xsl:call-template name="memberheader">
-				<xsl:with-param name="membertype" select="'variable'"/>
-				<xsl:with-param name="membername" select="substring(@name,3)"/>
-				<xsl:with-param name="anchor" select="substring(@name,3)"/>
-			</xsl:call-template>
-			<xsl:apply-templates select="summary"/>
-			<xsl:if test="@syntax">
-				<h3>Syntax</h3><p class="syntax"><xsl:value-of select="@syntax"/></p>
-			</xsl:if>
-			<xsl:apply-templates select="tagname"/>
-			<xsl:if test="remarks or text()">
-				<h3>Remarks</h3>
-				<xsl:apply-templates select="remarks"/>
-				<xsl:if test="text()">
-					<div class="p"><xsl:apply-templates select="text()"/></div>
-				</xsl:if>
-			</xsl:if>
-			<xsl:apply-templates select="example"/>
-			<xsl:if test="referrer">
-				<h3>Used by</h3>
-				<ul><xsl:apply-templates select="referrer"/></ul>
-			</xsl:if>
-			<xsl:if test="dependency">
-				<h3>Depends on</h3>
-				<ul><xsl:apply-templates select="dependency"/></ul>
-			</xsl:if>
-			<xsl:apply-templates select="location"/>
-			<xsl:call-template name="seealso-section"/>
-		</xsl:when>
-	</xsl:choose>
+<xsl:template name="member-entry">
+	<xsl:param name="membertype"/>
+	<xsl:call-template name="memberheader">
+		<xsl:with-param name="membertype" select="$membertype"/>
+		<xsl:with-param name="membername" select="substring(@name,3)"/>
+		<xsl:with-param name="anchor" select="substring(@name,3)"/>
+	</xsl:call-template>
+	<xsl:apply-templates select="summary"/>
+	<xsl:if test="$membertype = 'constant'">
+		<h3>Value</h3>
+		<div class="p"><xsl:value-of select="@value"/></div>
+		<xsl:apply-templates select="tagname"/>
+		<xsl:apply-templates select="size"/>
+	</xsl:if>
+	<xsl:if test="$membertype = 'function'">
+		<h3>Syntax</h3><p class="syntax"><xsl:value-of select="@syntax"/></p>
+		<xsl:if test="param">
+			<table class="param"><xsl:apply-templates select="param"/></table>
+		</xsl:if>
+		<xsl:apply-templates select="tagname"/>
+		<xsl:apply-templates select="returns"/>
+	</xsl:if>
+	<xsl:if test="remarks or text()">
+		<h3>Remarks</h3>
+		<xsl:apply-templates select="remarks"/>
+		<xsl:if test="text()">
+			<div class="p"><xsl:apply-templates select="text()"/></div>
+		</xsl:if>
+	</xsl:if>
+	<xsl:if test="$membertype = 'enumeration' and member">
+		<h3>Members</h3>
+		<blockquote>
+			<xsl:for-each select="member">
+				<xsl:call-template name="member-entry">
+					<xsl:with-param name="membertype" select="'constant'"/>
+				</xsl:call-template>
+			</xsl:for-each>
+		</blockquote>
+	</xsl:if>
+	<xsl:apply-templates select="example"/>
+	<xsl:if test="referrer">
+		<h3>Used by</h3>
+		<ul><xsl:apply-templates select="referrer"/></ul>
+	</xsl:if>
+	<xsl:if test="dependency">
+		<h3>Depends on</h3>
+		<ul><xsl:apply-templates select="dependency"/></ul>
+	</xsl:if>
+	<xsl:if test="$membertype = 'function'">
+		<xsl:if test="attribute">
+			<h3>Attributes</h3>
+			<ul><xsl:apply-templates select="attribute"/></ul>
+		</xsl:if>
+		<xsl:apply-templates select="automaton"/>
+		<xsl:if test="transition">
+			<h3>Transition table</h3>
+			<table class="transition">
+				<tr><th>Source</th><th>Target</th><th>Condition</th></tr>
+				<xsl:apply-templates select="transition"/>
+			</table>
+		</xsl:if>
+	</xsl:if>
+	<xsl:apply-templates select="location"/>
+	<xsl:if test="$membertype = 'function'">
+		<xsl:apply-templates select="stacksize"/>
+		<xsl:apply-templates select="codesize"/>
+	</xsl:if>
+	<xsl:if test="seealso">
+		<h3>See Also</h3>
+		<xsl:if test="seealso[@name]">
+			<ul><xsl:apply-templates select="seealso[@name]"/></ul>
+		</xsl:if>
+		<xsl:apply-templates select="seealso[not(@name)]"/>
+	</xsl:if>
+	<xsl:call-template name="toplink"/>
+</xsl:template>
+
+<xsl:template name="toplink">
 	<p><small><a href="#">top</a></small></p>
 </xsl:template>
 
@@ -416,16 +329,6 @@
 	<pre><xsl:apply-templates/></pre>
 </xsl:template>
 
-<xsl:template name="seealso-section">
-	<xsl:if test="seealso">
-		<h3>See Also</h3>
-		<xsl:if test="seealso[@name]">
-			<ul><xsl:apply-templates select="seealso[@name]"/></ul>
-		</xsl:if>
-		<xsl:apply-templates select="seealso[not(@name)]"/>
-	</xsl:if>
-</xsl:template>
-
 <xsl:template match="seealso[@name]">
 	<li class="seealso"><a><xsl:attribute name="href">#<xsl:value-of select="@name"/></xsl:attribute><xsl:value-of select="@name"/>()</a></li>
 </xsl:template>
@@ -481,6 +384,54 @@
 <xsl:template match="th"><th><xsl:apply-templates/></th></xsl:template>
 <xsl:template match="td"><td><xsl:apply-templates/></td></xsl:template>
 
+<xsl:template name="table-of-keys">
+	<xsl:call-template name="memberheader">
+		<xsl:with-param name="membertype" select="'appendix'"/>
+		<xsl:with-param name="membername" select="'Appendix A: Table of keys'"/>
+		<xsl:with-param name="anchor" select="'Appendix_Keys'"/>
+	</xsl:call-template>
+	<table>
+		<thead>
+			<tr><th>Value</th><th>Macro</th><th>On foot GXT</th><th>In vehicle GXT</th><th>On foot default</th><th>In vehicle default</th></tr>
+		</thead>
+		<tbody style="font-family:monospace">
+			<tr><td>0x1</td><td>KEY_ACTION</td><td>~k~~PED_ANSWER_PHONE~</td><td>~k~~VEHICLE_FIREWEAPON_ALT~</td><td>TAB</td><td>ALT GR / LCTRL / NUM0</td></tr>
+			<tr><td>0x2</td><td>KEY_CROUCH</td><td>~k~~PED_DUCK~</td><td>~k~~VEHICLE_HORN~</td><td>C</td><td>H / CAPSLOCK</td></tr>
+			<tr><td>0x4</td><td>KEY_FIRE</td><td>~k~~PED_FIREWEAPON~</td><td>~k~~VEHICLE_FIREWEAPON~</td><td>LCTRL / LMB</td><td>LALT</td></tr>
+			<tr><td>0x8</td><td>KEY_SPRINT</td><td>~k~~PED_SPRINT~</td><td>~k~~VEHICLE_ACCELERATE~</td><td>SPACE</td><td>W</td></tr>
+			<tr><td>0x10</td><td>KEY_SECONDARY_ATTACK</td><td>~k~~VEHICLE_ENTER_EXIT~</td><td>~k~~VEHICLE_ENTER_EXIT~</td><td>ENTER</td><td>ENTER</td></tr>
+			<tr><td>0x20</td><td>KEY_JUMP</td><td>~k~~PED_JUMPING~</td><td>~k~~VEHICLE_BRAKE~</td><td>LSHIFT</td><td>S</td></tr>
+			<tr><td>0x40</td><td>KEY_LOOK_RIGHT</td><td>-</td><td>~k~~VEHICLE_LOOKRIGHT~</td><td>-</td><td>E</td></tr>
+			<tr><td>0x80</td><td>KEY_HANDBRAKE/KEY_AIM</td><td>~k~~PED_LOCK_TARGET~</td><td>~k~~VEHICLE_HANDBRAKE~</td><td>RMB</td><td>SPACE</td></tr>
+			<tr><td>0x100</td><td>KEY_LOOK_LEFT</td><td>-</td><td>~k~~VEHICLE_LOOKLEFT~</td><td>-</td><td>Q</td></tr>
+			<tr><td>0x140</td><td>KEY_LOOK_BEHIND</td><td>~k~~PED_LOOKBEHIND~</td><td>~k~~VEHICLE_LOOKBEHIND~</td><td>NUM1 / MMB</td><td>2</td></tr>
+			<tr><td>0x200</td><td>KEY_SUBMISSION</td><td>-</td><td>~k~~TOGGLE_SUBMISSIONS~</td><td>NUM1 / MMB</td><td>2 / NUMPAD +</td></tr>
+			<tr><td>0x400</td><td>KEY_WALK</td><td>~k~~SNEAK_ABOUT~</td><td>-</td><td>LALT</td><td>-</td></tr>
+			<tr><td>0x800</td><td>KEY_ANALOG_UP</td><td>-</td><td>~k~~VEHICLE_TURRETUP~</td><td>NUM8<sup>(3)</sup></td><td>NUM8</td></tr>
+			<tr><td>0x1000</td><td>KEY_ANALOG_DOWN</td><td>-</td><td>~k~~VEHICLE_TURRETDOWN~</td><td>NUM2<sup>(3)</sup></td><td>NUM2</td></tr>
+			<tr><td>0x2000</td><td>KEY_ANALOG_LEFT</td><td>~k~~VEHICLE_LOOKLEFT~</td><td>~k~~VEHICLE_TURRETLEFT~</td><td>NUM4</td><td>NUM4</td></tr>
+			<tr><td>0x4000</td><td>KEY_ANALOG_RIGHT</td><td>~k~~VEHICLE_LOOKRIGHT~</td><td>~k~~VEHICLE_TURRETRIGHT~</td><td>NUM6</td><td>NUM6</td></tr>
+			<tr><td>0x10000</td><td>KEY_YES</td><td>~k~~CONVERSATION_YES~</td><td>~k~~CONVERSATION_YES~</td><td>Y</td><td>Y</td></tr>
+			<tr><td>0x20000</td><td>KEY_NO</td><td>~k~~CONVERSATION_NO~</td><td>~k~~CONVERSATION_NO~</td><td>N</td><td>N</td></tr>
+			<tr><td>0x40000</td><td>KEY_CTRL_BACK<sup>(1)</sup></td><td>~k~~GROUP_CONTROL_BWD~</td><td>~k~~GROUP_CONTROL_BWD~</td><td>H</td><td>H</td></tr>
+			<tr><td>-<sup>(2)</sup></td><td>-</td><td>~k~~GROUP_CONTROL_FWD~</td><td>~k~~GROUP_CONTROL_FWD~</td><td>G</td><td>G</td></tr>
+			<tr><td>[-128,-1]<sup>(4)</sup></td><td>KEY_UP<sup>(5)</sup></td><td>~k~~GO_FORWARD~</td><td>~k~~VEHICLE_STEERUP~</td><td>UP</td><td>UP</td></tr>
+			<tr><td>[1,128]<sup>(4)</sup></td><td>KEY_DOWN<sup>(5)</sup></td><td>~k~~GO_BACK~</td><td>~k~~VEHICLE_STEERDOWN~</td><td>DOWN</td><td>DOWN</td></tr>
+			<tr><td>[-128,-1]<sup>(4)</sup></td><td>KEY_LEFT<sup>(5)</sup></td><td>~k~~GO_LEFT~</td><td>~k~~VEHICLE_STEERLEFT~</td><td>LEFT</td><td>LEFT</td></tr>
+			<tr><td>[1,128]<sup>(4)</sup></td><td>KEY_RIGHT<sup>(5)</sup></td><td>~k~~GO_RIGHT~</td><td>~k~~VEHICLE_STEERRIGHT~</td><td>RIGHT</td><td>RIGHT</td></tr>
+		</tbody>
+	</table>
+	<h3>Remarks</h3>
+	<ul>
+		<li><strong>(1)</strong> Since 0.3d. Cannot be detected while the player is in spectator mode.</li>
+		<li><strong>(2)</strong> Cannot be detected, <code>GROUP_CONTROL_FWD</code> is used to enter as passenger.</li>
+		<li><strong>(3)</strong> Only detected when JOYPAD configuration is selected.</li>
+		<li><strong>(4)</strong> These values can be read from the <em>updown</em> and <em>leftright</em> parameters when calling <a href="#GetPlayerKeys">GetPlayerKeys</a>.</li>
+		<li><strong>(5)</strong> These macros only work with the most extreme value, players using analogue input can report any value within the given range.</li>
+	</ul>
+	<xsl:call-template name="toplink"/>
+</xsl:template>
+
 <xsl:template name="vehicle-damage-status">
 	<xsl:call-template name="memberheader">
 		<xsl:with-param name="membertype" select="'appendix'"/>
@@ -491,6 +442,8 @@
 	<div class="p">
 		<p>When using <a href="#UpdateVehicleDamageStatus">UpdateVehicleDamageStatus</a>, the server will internally store the damage status without any checks and send it to the clients, but the clients will only (partially) apply the damage status depending on the vehicle. This means setting values using <a href="#UpdateVehicleDamageStatus">UpdateVehicleDamageStatus</a> will be reported back when using <a href="#GetVehicleDamageStatus">GetVehicleDamageStatus</a> but they may not have any effect in players' clients. See tables and notes below for support.</p>
 		<p>The client usually keeps values that don't mean anything. For example, when setting the unused highest nibble of the panel state to <strong><code>7</code></strong> and the player damages the windshield, the panel value after the client reports the update would be <strong><code>0x70020000</code></strong>.</p>
+		<p>The client has two distinct ways of handling damage updates, depending on if all of panels,doors,lights are 0 or not (tires do not apply here because those are handled separately). If all values are 0, a game function is called that visually fixes the vehicle. If not all values are 0, a game function is called that applies visual damage. This may create weird side-effects when putting values back to 0 while not all values are 0. For example, setting a single panel state to 0 might remove dents in the panel but can still leave it hanging loosely. This is because only the function that fixes the vehicle will completely reset the visual damage.</p>
+		<p>Some planes have an additional quirk when putting all of panels,doors,lights to 0 because the client calls a game function to visually fix an automobile, which is not supposed to be used on planes. This results in 'ghost door' effects on some planes, see <a href="#Appendix_Vehicle_Damage_Status_planeghostdoors">Plane ghost doors</a> on how to deal with this.</p>
 	</div>
 	<h3 id="Appendix_Vehicle_Damage_Status_vehiclesupport">Vehicle support</h3>
 	<div class="p">
@@ -498,11 +451,11 @@
 		<table>
 			<thead><tr><th>Kind</th><th>Panels</th><th>Doors</th><th>Lights</th><th>Tires</th></tr></thead>
 			<tbody>
-				<tr><td>Automobile<sup><strong>(1)</strong></sup></td><td>x</td><td>x</td><td>x</td><td>x</td></tr>
+				<tr><td>Automobile<sup>(1)</sup></td><td>x</td><td>x</td><td>x</td><td>x</td></tr>
 				<tr><td>Motorcycle</td><td></td><td></td><td></td><td>x</td></tr>
 				<tr><td>Heli</td><td></td><td></td><td></td><td></td></tr>
 				<tr><td>Boat</td><td></td><td></td><td></td><td></td></tr>
-				<tr><td>Plane<sup><strong>(2)</strong></sup></td><td>x</td><td>x</td><td>x<sup><strong>(3)</strong></sup></td><td></td></tr>
+				<tr><td>Plane<sup>(2)</sup></td><td>x</td><td>x</td><td>x<sup>(3)</sup></td><td></td></tr>
 				<tr><td>Bike</td><td></td><td></td><td></td><td></td></tr>
 				<tr><td>Train</td><td></td><td></td><td></td><td></td></tr>
 				<tr><td>Trailer</td><td></td><td></td><td></td><td></td></tr>
@@ -520,11 +473,11 @@
 		<table>
 		  <thead><tr><th>Mask</th><th>Automobile usage</th><th>Plane usage</th></tr></thead>
 		  <tbody>
-		  <tr><td><strong><code>0x0000000F</code></strong></td><td>front left</td><td>left engine<sup><strong>(1)(2)</strong></sup></td></tr>
-		  <tr><td><strong><code>0x000000F0</code></strong></td><td>front right</td><td>right engine<sup><strong>(1)(2)</strong></sup></td></tr>
+		  <tr><td><strong><code>0x0000000F</code></strong></td><td>front left</td><td>left engine<sup>(1)(2)</sup></td></tr>
+		  <tr><td><strong><code>0x000000F0</code></strong></td><td>front right</td><td>right engine<sup>(1)(2)</sup></td></tr>
 		  <tr><td><strong><code>0x00000F00</code></strong></td><td>rear left</td><td>rudder</td></tr>
-		  <tr><td><strong><code>0x0000F000</code></strong></td><td>rear right</td><td>elevators<sup><strong>(3)</strong></sup></td></tr>
-		  <tr><td><strong><code>0x000F0000</code></strong></td><td>windshield</td><td>ailerons<sup><strong>(4)</strong></sup></td></tr>
+		  <tr><td><strong><code>0x0000F000</code></strong></td><td>rear right</td><td>elevators<sup>(3)</sup></td></tr>
+		  <tr><td><strong><code>0x000F0000</code></strong></td><td>windshield</td><td>ailerons<sup>(4)(5)</sup></td></tr>
 		  <tr><td><strong><code>0x00F00000</code></strong></td><td>front bumper</td><td>(unused)</td></tr>
 		  <tr><td><strong><code>0x0F000000</code></strong></td><td>rear bumber</td><td>(unused)</td></tr>
 		  <tr><td><strong><code>0xF0000000</code></strong></td><td>(unused)</td><td>(unused)</td></tr>
@@ -534,15 +487,16 @@
 		<ul>
 			<li><strong><code>0x1</code></strong> - is damaged</li>
 			<li><strong><code>0x2</code></strong> - is very damaged (panel hangs loosely)</li>
-			<li><strong><code>0x3</code></strong> - is removed<sup><strong>(5)(6)</strong></sup></li>
+			<li><strong><code>0x3</code></strong> - is removed<sup>(6)(7)</sup></li>
 		</ul>
 		<p>
 			<strong>(1)</strong> single-engine planes only use the left engine, setting the right engine status will have no effect<br/>
 			<strong>(2)</strong> jet engines cannot be damaged (Shamal, Hydra, AT-400, Andromada)<br/>
 			<strong>(3)</strong> if the plane has two separate elevators, this only damages the right elevator (but it will repair both when setting it to 0)<br/>
 			<strong>(4)</strong> this only damages the right aileron, but setting it to 0 repairs both left and right<br/>
-			<strong>(5)</strong> plane panels do not get removed, they have another gradation of damaged<br/>
-			<strong>(6)</strong> if this is a plane engine it will produce barely any thrust and most of the time even reverse thrust
+			<strong>(5)</strong> setting this back to 0 while not all of panels,doors,lights are set to 0 will functionally repair the ailerons (fixes the handling of the plane), but the ailerons may still look like they are damaged or slightly loose<br/>
+			<strong>(6)</strong> plane panels do not get removed, they have another gradation of damaged<br/>
+			<strong>(7)</strong> if this is a plane engine it will produce barely any thrust and most of the time even reverse thrust
 		</p>
 	</div>
 	<h3 id="Appendix_Vehicle_Damage_Status_doorstates">Door states</h3>
@@ -551,25 +505,25 @@
 		<table>
 			<thead><tr><th>Mask</th><th>Automobile usage</th><th>Plane usage</th></tr></thead>
 			<tbody>
-				<tr><td><strong><code>0x000000FF</code></strong></td><td>hood</td><td>rudder<sup><strong>(1)</strong></sup></td></tr>
-				<tr><td><strong><code>0x0000FF00</code></strong></td><td>trunk</td><td>left elevator<sup><strong>(1)(2)</strong></sup></td></tr>
-				<tr><td><strong><code>0x00FF0000</code></strong></td><td>drivers door</td><td>pilot door<sup><strong>(3)</strong></sup></td></tr>
+				<tr><td><strong><code>0x000000FF</code></strong></td><td>hood</td><td>rudder<sup>(1)</sup></td></tr>
+				<tr><td><strong><code>0x0000FF00</code></strong></td><td>trunk</td><td>left elevator<sup>(1)(2)</sup></td></tr>
+				<tr><td><strong><code>0x00FF0000</code></strong></td><td>drivers door</td><td>pilot door<sup>(3)</sup></td></tr>
 				<tr><td><strong><code>0xFF000000</code></strong></td><td>co-drivers door</td><td>co-pilot door</td></tr>
 			</tbody>
 		</table>
 		<p>The game holds state for 6 doors: hood, trunk, 2 front doors, 2 back doors. It's not possible to get or set the state of the back doors, their states are also not synced between clients.</p>
 		<p>Individual byte meaning:</p>
 		<ul>
-			<li><strong><code>0x1</code></strong> - is opened<sup><strong>(4)(5)</strong></sup></li>
-			<li><strong><code>0x2</code></strong> - is damaged<sup><strong>(6)</strong></sup></li>
+			<li><strong><code>0x1</code></strong> - is opened<sup>(4)(5)</sup></li>
+			<li><strong><code>0x2</code></strong> - is damaged<sup>(6)</sup></li>
 			<li><strong><code>0x4</code></strong> - is removed</li>
 		</ul>
 		<p>
 			<strong>(1)</strong> only value <strong><code>0x4</code></strong> has an effect: it will spawn a flying part (but the rudder/elevator will not actually be removed nor functionally damaged)<br/>
 			<strong>(2)</strong> only applies to Stuntplane, Shamal, Hydra, Nevada, AT-400, Andromada<br/>
-			<strong>(3)</strong> setting the pilot door to <strong><code>0</code></strong> creates a 'ghost door' on some models, see <a href="#Appendix_Vehicle_Damage_Status_planeghostdoors">Plane ghost doors</a> below<br/>
+			<strong>(3)</strong> pilot doors can have a 'ghost door' effect on some models when fixing all damage, see <a href="#Appendix_Vehicle_Damage_Status_planeghostdoors">Plane ghost doors</a> below<br/>
 			<strong>(4)</strong> extra plane passenger doors (for Beagle, Dodo, Skimmer) don't open<br/>
-			<strong>(5)</strong> opening the driver's door will result in the drive immediately closing the door again<br/>
+			<strong>(5)</strong> opening the driver's door will result in the driver immediately closing the door again<br/>
 			<strong>(6)</strong> plane doors do not have damaged models, so these look like undamaged doors
 		</p>
 	</div>
@@ -610,7 +564,7 @@ case 553: // Nevada
 	UpdateVehicleDamageStatus(vehicleid, 0, 0x20000, 0, 0);
 }</pre>
 	</div>
-	<p><small><a href="#">top</a></small></p>
+	<xsl:call-template name="toplink"/>
 </xsl:template>
 
 </xsl:stylesheet>

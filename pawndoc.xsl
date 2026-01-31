@@ -239,6 +239,10 @@
 		</xsl:if>
 		<xsl:apply-templates select="seealso[not(@name)]"/>
 	</xsl:if>
+	<xsl:call-template name="toplink"/>
+</xsl:template>
+
+<xsl:template name="toplink">
 	<p><small><a href="#">top</a></small></p>
 </xsl:template>
 
@@ -425,7 +429,7 @@
 		<li><strong>(4)</strong> These values can be read from the <em>updown</em> and <em>leftright</em> parameters when calling <a href="#GetPlayerKeys">GetPlayerKeys</a>.</li>
 		<li><strong>(5)</strong> These macros only work with the most extreme value, players using analogue input can report any value within the given range.</li>
 	</ul>
-	<p><small><a href="#">top</a></small></p>
+	<xsl:call-template name="toplink"/>
 </xsl:template>
 
 <xsl:template name="vehicle-damage-status">
@@ -560,7 +564,7 @@ case 553: // Nevada
 	UpdateVehicleDamageStatus(vehicleid, 0, 0x20000, 0, 0);
 }</pre>
 	</div>
-	<p><small><a href="#">top</a></small></p>
+	<xsl:call-template name="toplink"/>
 </xsl:template>
 
 </xsl:stylesheet>
